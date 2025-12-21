@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace CMGTSA.Inventory {
+namespace SA_Inventory
+{
 
     /// <summary>
     /// Abstract class for item sorting strategies.

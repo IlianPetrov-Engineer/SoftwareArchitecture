@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
-namespace CMGTSA.Inventory
+namespace SA_Inventory
 {
     // This class presents items of an inventory in a ListView format.
     public class ListViewInventoryPresenter : InventoryPresenter

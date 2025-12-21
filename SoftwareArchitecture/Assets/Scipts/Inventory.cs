@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CMGTSA.Inventory
+namespace SA_Inventory
 {
-    /// <summary>
-    /// A inventory class that uses Strategy pattern to quickly switch different sorting
-    /// methods for its items.
-    /// </summary>
     public class Inventory : MonoBehaviour
     {
         // List of item data assets used to generate actual items at runtime.
@@ -32,7 +27,7 @@ namespace CMGTSA.Inventory
         private void Awake()
         {
             GenerateInventory();             // Create items based on itemDatas.
-            LoadItemSortingStrategies();     // Find sorting strategies attached as components.
+            //LoadItemSortingStrategies();     // Find sorting strategies attached as components.
         }
 
         // Instantiates items based on the item data list.

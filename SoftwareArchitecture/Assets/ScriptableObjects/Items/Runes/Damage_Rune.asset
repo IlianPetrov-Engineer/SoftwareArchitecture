@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081a529f5a9474448166f20af32bf7c, type: 3}
   m_Name: Damage_Rune
   m_EditorClassIdentifier: 
-  id: 5
-  itemName: 
+  id: damage_rune
+  itemName: Damage Rune
   health: 0
   defense: 0
   value: 0

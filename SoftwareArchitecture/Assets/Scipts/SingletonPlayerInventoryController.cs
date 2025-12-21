@@ -1,14 +1,12 @@
 using UnityEngine;
-using CMGTSA.Inventory;
+using SA_Inventory;
 
-/// <summary>
-/// A singleton player inventory controller, it ensures that player's inventory
-/// is shared in different scenes.
-/// </summary>
 [RequireComponent(typeof(Inventory))]
+
 public class SingletonPlayerInventoryController : MonoBehaviour
 {
     public Inventory inventory { get; private set; }
+
     public static SingletonPlayerInventoryController Instance { get; private set; }
 
     private void Awake()
@@ -30,9 +28,10 @@ public class SingletonPlayerInventoryController : MonoBehaviour
         {
             inventory = GetComponent<Inventory>();
         }
+
         if(inventory != null)
         {
-            //ItemContainer.onGetItem += inventory.AddItem;
+            ItemContainer.onGetItem += inventory.AddItem;
         }
     }
 
@@ -40,7 +39,7 @@ public class SingletonPlayerInventoryController : MonoBehaviour
     {
         if (inventory != null)
         {
-            //ItemContainer.onGetItem -= inventory.AddItem;
+            ItemContainer.onGetItem -= inventory.AddItem;
         }
     }
 }

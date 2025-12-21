@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace CMGTSA.Inventory
+namespace SA_Inventory
 {
-    /// <summary>
-    /// This is the script for creating an ItemData scriptable object, which is
-    /// "blueprint" to create item objects with the properties set up in the inspector,
-    /// it is an implementation of factory pattern.defenseite
-    /// </summary>
     [CreateAssetMenu(fileName = "Item", menuName = "Scriptable Objects/Item")]
     public class ItemData : ScriptableObject
     {

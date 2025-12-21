@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d081a529f5a9474448166f20af32bf7c, type: 3}
   m_Name: Regeneration_Rune
   m_EditorClassIdentifier: 
-  id: 7
-  itemName: 
+  id: regeneration_rune
+  itemName: Regeneration Rune
   health: 0
   defense: 0
   value: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CMGTSA.Inventory {
+namespace SA_Inventory {
 
     /// <summary>
     /// Abstract item presenter, an item presenter presents an item as different
