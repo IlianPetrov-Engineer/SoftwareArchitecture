@@ -4,10 +4,6 @@ using System;
 
 namespace SA_Inventory
 {
-
-    /// <summary>
-    /// Abstract class for item sorting strategies.
-    /// </summary>
     public abstract class ItemSortingStrategy : MonoBehaviour
     {
         [SerializeField]

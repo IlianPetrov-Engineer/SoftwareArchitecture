@@ -1,5 +1,7 @@
 using UnityEngine;
 using SA_Inventory;
+using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(Inventory))]
 
@@ -8,6 +10,11 @@ public class SingletonPlayerInventoryController : MonoBehaviour
     public Inventory inventory { get; private set; }
 
     public static SingletonPlayerInventoryController Instance { get; private set; }
+
+    [SerializeField] Transform itemContent;
+    [SerializeField] GameObject inventoryItem;
+
+    [SerializeField] GameObject inventoryPresenter;
 
     private void Awake()
     {
@@ -31,7 +38,7 @@ public class SingletonPlayerInventoryController : MonoBehaviour
 
         if(inventory != null)
         {
-            ItemContainer.onGetItem += inventory.AddItem;
+            ItemCreation.onGetItem += inventory.AddItem;
         }
     }
 
@@ -39,7 +46,33 @@ public class SingletonPlayerInventoryController : MonoBehaviour
     {
         if (inventory != null)
         {
-            ItemContainer.onGetItem -= inventory.AddItem;
+            ItemCreation.onGetItem -= inventory.AddItem;
+        }
+    }
+
+    private void Update()
+    {
+        if (inventoryPresenter.activeSelf)
+        {
+            ListItems();
+        }
+    }
+
+    public void ListItems()
+    {
+        foreach (Transform item in itemContent)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (var item in inventory.Items)
+        {
+            GameObject obj = Instantiate(inventoryItem, itemContent);
+            var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
+            var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
+
+            itemName.text = item.ItemName;
+            itemIcon.sprite = item.itemIcon;
         }
     }
 }

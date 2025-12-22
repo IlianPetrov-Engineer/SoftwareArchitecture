@@ -3,7 +3,7 @@ using System;
 
 namespace SA_Inventory
 {
-    public class ItemContainer : MonoBehaviour
+    public class ItemCreation : MonoBehaviour
     {
         public static Action<Item> onGetItem;
         [SerializeField]

@@ -18,5 +18,5 @@ MonoBehaviour:
   defense: 30
   value: 3
   buffPercentage: 0
-  itemIcon: {fileID: 0}
-  itemModel: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 15d2e3a1197501a46a7c89fd3247b247, type: 3}
+  itemModel: {fileID: 2733423932199385696, guid: 0f6ae14a61412314687b30c748216211, type: 3}

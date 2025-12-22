@@ -18,5 +18,5 @@ MonoBehaviour:
   defense: 0
   value: 5
   buffPercentage: 0
-  itemIcon: {fileID: 0}
-  itemModel: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 40c9fa878beec8946af0140078b32416, type: 3}
+  itemModel: {fileID: 7215856734752065869, guid: 1242a88922ac6d34da67517f4c97626b, type: 3}

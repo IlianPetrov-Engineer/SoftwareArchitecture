@@ -1,7 +1,7 @@
 using UnityEngine;
 using SA_Inventory;
 
-public class Chest : MonoBehaviour
+public class ItemReceiver : MonoBehaviour
 {
     private void OnEnable()
     {
@@ -10,7 +10,7 @@ public class Chest : MonoBehaviour
 
     public void Open()
     {
-        ItemContainer itemContainer = GetComponent<ItemContainer>();
+        ItemCreation itemContainer = GetComponent<ItemCreation>();
         if (itemContainer != null)
         {
             Item item = itemContainer.GiveItem();
