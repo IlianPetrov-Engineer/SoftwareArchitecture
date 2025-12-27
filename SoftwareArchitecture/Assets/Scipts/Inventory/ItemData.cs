@@ -21,6 +21,12 @@ namespace SA_Inventory
         public Sprite itemIcon;
         public GameObject itemModel;
 
+        public ItemType itemType;
+        public enum ItemType
+        {
+            HealthPotion 
+        }
+
         public Item CreateItem()
         {
             return new Item(this);
@@ -33,8 +39,7 @@ namespace SA_Inventory
         [Header("Unique id for each item")]
         [SerializeField]
         private string id;
-        public string Id => id;//This setup allows access to the private field 'id'
-                               //while also allows it to be shown in the inspector
+        public string Id => id;
 
         [Header("Core properties")]
         [SerializeField]

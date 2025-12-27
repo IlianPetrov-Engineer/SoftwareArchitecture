@@ -1,10 +1,14 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace SA_Inventory
 {
     public class Inventory : MonoBehaviour
     {
+        public static Inventory Instance { get; private set; }
+
+
         // List of item data assets used to generate actual items at runtime.
         [SerializeField]
         private List<ItemData> itemDatas;
@@ -51,6 +55,19 @@ namespace SA_Inventory
         {
             items.Remove(item);
         }
+
+        //public void UseItem()
+        //{
+        //    switch (itemData.itemType)
+        //    {
+        //        case ItemData.ItemType.HealthPotion:
+        //            playerStats.Heal(itemData.health);
+        //                break;
+
+        //    }
+
+        //    RemoveItem(items.Find(healthPotion => healthPotion.ItemName == "Health Potions"));
+        //}
 
         #region "Strategy Pattern Implementation"
         // Loads sorting strategy components from child objects.

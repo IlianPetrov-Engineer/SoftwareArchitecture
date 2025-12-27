@@ -2,6 +2,7 @@ using UnityEngine;
 using SA_Inventory;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Inventory))]
 
@@ -68,6 +69,7 @@ public class SingletonPlayerInventoryController : MonoBehaviour
         foreach (var item in inventory.Items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
+            //inventoryItem.GetComponent<Button>().onClick.AddListener(() => inventory.UseItem());
             var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
 

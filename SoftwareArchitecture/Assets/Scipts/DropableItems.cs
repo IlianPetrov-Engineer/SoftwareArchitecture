@@ -4,23 +4,24 @@ using UnityEngine;
 public class DropableItems : MonoBehaviour
 {
     [SerializeField] List<GameObject> drops = new List<GameObject>();
-    //[SerializeField] GameObject spawner;
+    //[SerializeField] XP xp;
+
+    //private void Awake()
+    //{
+    //    if (xp == null)
+    //    {
+    //        Debug.LogError("Enemy is missing `Xp` prefab");
+    //    }
+    //}
 
     public void Drop()
     {
-        //Bounds bounds = spawner.GetComponent<Collider>().bounds;
-
-        //Vector3 randomPosition = new Vector3(
-        //    Random.Range(bounds.min.x, bounds.max.x),
-        //    Random.Range(bounds.min.y, bounds.max.y),
-        //    Random.Range(bounds.min.z, bounds.max.z)
-        //    );
-
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
-            int item;
+        int item;
         item = Random.Range(0, drops.Count);
 
+        //Instantiate(xp, spawnPos, Quaternion.identity);
         Instantiate(drops[item], spawnPos, Quaternion.identity);
     }
 }

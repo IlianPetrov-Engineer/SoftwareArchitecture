@@ -6,6 +6,13 @@ public class PlayerExtras : MonoBehaviour
 {
     public static Action onInteract;
 
+    //private ProjectileControler projectileControler;
+
+    //private void Start()
+    //{
+    //    projectileControler = GetComponent<ProjectileControler>();
+    //}
+
     public void Interact(InputAction.CallbackContext context)
     {
         onInteract?.Invoke();
@@ -17,5 +24,10 @@ public class PlayerExtras : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    projectileControler.Attack();
+        //}
     }
 }
