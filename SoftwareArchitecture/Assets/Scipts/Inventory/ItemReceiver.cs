@@ -3,11 +3,6 @@ using SA_Inventory;
 
 public class ItemReceiver : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        PlayerExtras.onInteract += Open;
-    }
-
     public void Open()
     {
         ItemCreation itemContainer = GetComponent<ItemCreation>();

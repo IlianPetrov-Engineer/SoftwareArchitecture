@@ -263,10 +263,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 897600986}
     m_Modifications:
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: SprintSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: RotationSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
       objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228376, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
     - target: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -310,7 +322,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840899097}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!1 &96173838
 GameObject:
@@ -557,8 +572,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1844375363}
-        m_TargetAssemblyTypeName: SingletonPlayerInventoryController, Assembly-CSharp
+      - m_Target: {fileID: 1844375364}
+        m_TargetAssemblyTypeName: SA_Inventory.Inventory, Assembly-CSharp
         m_MethodName: ListItems
         m_Mode: 1
         m_Arguments:
@@ -618,6 +633,10 @@ PrefabInstance:
     - target: {fileID: 561623677705676682, guid: d3d94d1ac1aa49540a182425174bb547, type: 3}
       propertyPath: m_Name
       value: RedPotion Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 561623677705676682, guid: d3d94d1ac1aa49540a182425174bb547, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 900888626515688752, guid: d3d94d1ac1aa49540a182425174bb547, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1340,6 +1359,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &840899091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 59343845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &840899097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840899091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169b530329bce6049b9da94f15d86da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!1 &897600985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,11 +1420,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897600985}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 169b530329bce6049b9da94f15d86da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!114 &897600988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,8 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10dc4b4a771e8d841bdbc2ac027c65f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 100
+  currentHealth: 50
   currentLevel: 0
   currentXP: 0
   skillTokens: 0
@@ -1472,7 +1510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1783,7 +1821,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 140}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1533093406
 MonoBehaviour:
@@ -2212,7 +2250,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1844375365}
   - component: {fileID: 1844375364}
-  - component: {fileID: 1844375363}
   m_Layer: 0
   m_Name: Player Invertory
   m_TagString: Untagged
@@ -2220,21 +2257,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1844375363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844375362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf93e0e463ee8a14884729ba7b3ba1e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemContent: {fileID: 1533093405}
-  inventoryItem: {fileID: 7036544408563780632, guid: c8bc77d59a7eb864d8e603d123d882ba, type: 3}
-  inventoryPresenter: {fileID: 2111221998}
 --- !u!114 &1844375364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,10 +2269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab21113e858fee4478191a56d3dc0550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDatas: []
+  itemContent: {fileID: 1533093405}
+  inventoryItem: {fileID: 7036544408563780632, guid: c8bc77d59a7eb864d8e603d123d882ba, type: 3}
+  useItems: []
   items: []
-  itemSortingStrategies: []
-  strategyIndex: 0
   references:
     version: 2
     RefIds: []
@@ -2372,7 +2394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1533093405}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1

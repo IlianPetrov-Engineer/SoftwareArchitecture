@@ -4,7 +4,12 @@ using System;
 
 public class PlayerExtras : MonoBehaviour
 {
-    public static Action onInteract;
+    public PlayerInput playerInput;
+
+    private void Awake()
+    {
+        playerInput = GetComponentInChildren<PlayerInput>();
+    }
 
     //private ProjectileControler projectileControler;
 
@@ -13,14 +18,9 @@ public class PlayerExtras : MonoBehaviour
     //    projectileControler = GetComponent<ProjectileControler>();
     //}
 
-    public void Interact(InputAction.CallbackContext context)
-    {
-        onInteract?.Invoke();
-    }
-
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -29,5 +29,13 @@ public class PlayerExtras : MonoBehaviour
         //{
         //    projectileControler.Attack();
         //}
+    }
+
+    void OnTest(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Debug.Log("Test");
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance;
+
     [Header("Health")]
     public int maxHealth;
     public int currentHealth;
@@ -18,6 +20,11 @@ public class PlayerStats : MonoBehaviour
     public event Action OnLevelUp;
     public event Action OnXPChanged;
     public event Action OnHealthChanged;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void AddXP(int amount)
     {
@@ -54,7 +61,7 @@ public class PlayerStats : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth += amount;
-        OnHealthChanged?.Invoke();
+        //OnHealthChanged?.Invoke();
     }
 
     // ================= Checkpoint =================

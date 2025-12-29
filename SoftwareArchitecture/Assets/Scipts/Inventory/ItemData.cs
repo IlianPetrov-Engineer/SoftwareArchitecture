@@ -21,12 +21,6 @@ namespace SA_Inventory
         public Sprite itemIcon;
         public GameObject itemModel;
 
-        public ItemType itemType;
-        public enum ItemType
-        {
-            HealthPotion 
-        }
-
         public Item CreateItem()
         {
             return new Item(this);
@@ -78,6 +72,12 @@ namespace SA_Inventory
             itemIcon = itemData.itemIcon;
             itemModel = itemData.itemModel;
             //isPotion = itemData.isPotion;
+        }
+
+        public ItemType itemType;
+        public enum ItemType
+        {
+            HealthPotion
         }
     }
 }

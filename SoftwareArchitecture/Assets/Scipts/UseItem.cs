@@ -3,26 +3,29 @@ using UnityEngine;
 
 public class UseItem : MonoBehaviour
 {
-    private Item item;
-    private ItemData data;
-    private PlayerStats playerStats;
-    //private Inventory inventory;
+    Item item;
 
-    void RemoveItem()
+    public void RemoveItem()
     {
         Inventory.Instance.RemoveItem(item);
+
+        Destroy(gameObject);
+    }
+
+    public void AddItem(Item newItem)
+    {
+        item = newItem;
     }
 
     public void UseItems()
     {
-        switch (data.itemType)
+        switch (item.itemType)
         {
-            case ItemData.ItemType.HealthPotion:
-                playerStats.Heal(data.health);
+            case Item.ItemType.HealthPotion:
+                PlayerStats.Instance.Heal(item.Health);
                 break;
-
         }
 
-       RemoveItem();
+        RemoveItem();
     }
 }
