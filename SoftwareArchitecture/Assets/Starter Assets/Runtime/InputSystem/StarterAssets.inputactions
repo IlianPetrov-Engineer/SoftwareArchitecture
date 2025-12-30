@@ -43,13 +43,31 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Test",
+                    "name": "Inventory",
                     "type": "Button",
                     "id": "4d41d86a-8277-4348-b86c-06a3c538ac79",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SkillTree",
+                    "type": "Button",
+                    "id": "939ef0aa-9877-4762-a93e-805e8ec1fc1a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "78d12a61-1109-4835-aea6-49cc578c49a9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -232,11 +250,33 @@
                 {
                     "name": "",
                     "id": "3ea61ece-2ac9-4063-871a-a2a959a83286",
-                    "path": "<Keyboard>/numpad6",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardMouse",
-                    "action": "Test",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b28606b7-8edb-4855-9288-9d3764aaec12",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "SkillTree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dda65155-b369-4dac-a8be-dd472d5338a0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,16 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using SA_Inventory;
+using StarterAssets;
 
 public class PlayerExtras : MonoBehaviour
 {
-    public PlayerInput playerInput;
-
-    private void Awake()
-    {
-        playerInput = GetComponentInChildren<PlayerInput>();
-    }
-
     //private ProjectileControler projectileControler;
 
     //private void Start()
@@ -18,24 +13,63 @@ public class PlayerExtras : MonoBehaviour
     //    projectileControler = GetComponent<ProjectileControler>();
     //}
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
+    [SerializeField] GameObject inventory;
+    private bool inventoryIsShown = false;
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    projectileControler.Attack();
-        //}
+    [SerializeField] GameObject skillTree;
+    private bool skillTreeIsShown = false;
+
+    [SerializeField] GameObject pauseMenu;
+    private bool pauseMenuIsShown = false;
+
+    private StarterAssetsInputs assetsInputs;
+    private FirstPersonController firstPersonController;
+
+    private void Awake()
+    {
+        assetsInputs = GetComponent<StarterAssetsInputs>();
+        firstPersonController = GetComponent<FirstPersonController>();
     }
 
-    void OnTest(InputValue value)
+    private void ToggleUI(ref bool isShown, GameObject uiObject, Action onActivate = null, Action onDeactivate = null)
     {
-        if (value.isPressed)
+        isShown = !isShown;
+        uiObject.SetActive(isShown);
+
+        if (isShown)
         {
-            Debug.Log("Test");
+            onActivate?.Invoke();
+            assetsInputs.cursorLocked = false;
+            assetsInputs.cursorInputForLook = false;
+
+            if (firstPersonController.Grounded)
+            {
+                firstPersonController.enabled = false;
+            }
         }
+        else
+        {
+            onDeactivate?.Invoke();
+            assetsInputs.cursorLocked = true;
+            assetsInputs.cursorInputForLook = true;
+            firstPersonController.enabled = true;
+        }
+
+        assetsInputs.OnApplicationFocus(assetsInputs.cursorLocked);
+    }
+
+    void OnInventory()
+    {
+        ToggleUI(ref inventoryIsShown, inventory, onActivate: () => Inventory.Instance.ListItems());
+    }
+
+    void OnSkillTree()
+    {
+        ToggleUI(ref skillTreeIsShown, skillTree, onActivate: () => Time.timeScale = 0, onDeactivate: () => Time.timeScale = 1);
+    }
+
+    void OnPauseMenu()
+    {
+        ToggleUI(ref pauseMenuIsShown, pauseMenu, onActivate: () => Time.timeScale = 0, onDeactivate: () => Time.timeScale = 1);
     }
 }
