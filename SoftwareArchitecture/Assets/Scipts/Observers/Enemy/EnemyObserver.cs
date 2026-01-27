@@ -15,15 +15,19 @@ public abstract class EnemyObserver : MonoBehaviour
     {
         enemyController.onEnemyCreated += OnEnemyCreated;
         enemyController.onHit += OnEnemyHit;
+        enemyController.onEnemyDied += OnEnemyDied;
     }
 
     protected void OnDisable()
     {
         enemyController.onEnemyCreated -= OnEnemyCreated;
         enemyController.onHit -= OnEnemyHit;
+        enemyController.onEnemyDied -= OnEnemyDied;
     }
 
     protected abstract void OnEnemyCreated(Enemy enemy);
 
     protected abstract void OnEnemyHit(Enemy enemy, DamageData damageData);
+
+    protected abstract void OnEnemyDied(Enemy enemy);
 }

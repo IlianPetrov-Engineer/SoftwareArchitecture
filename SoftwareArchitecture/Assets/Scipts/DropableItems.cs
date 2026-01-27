@@ -4,15 +4,6 @@ using UnityEngine;
 public class DropableItems : MonoBehaviour
 {
     [SerializeField] List<GameObject> drops = new List<GameObject>();
-    //[SerializeField] XP xp;
-
-    //private void Awake()
-    //{
-    //    if (xp == null)
-    //    {
-    //        Debug.LogError("Enemy is missing `Xp` prefab");
-    //    }
-    //}
 
     public void Drop()
     {
@@ -21,7 +12,6 @@ public class DropableItems : MonoBehaviour
         int item;
         item = Random.Range(0, drops.Count);
 
-        //Instantiate(xp, spawnPos, Quaternion.identity);
         Instantiate(drops[item], spawnPos, Quaternion.identity);
     }
 }

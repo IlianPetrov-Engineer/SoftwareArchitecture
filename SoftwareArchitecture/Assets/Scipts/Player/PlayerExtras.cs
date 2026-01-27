@@ -6,13 +6,6 @@ using StarterAssets;
 
 public class PlayerExtras : MonoBehaviour
 {
-    //private ProjectileControler projectileControler;
-
-    //private void Start()
-    //{
-    //    projectileControler = GetComponent<ProjectileControler>();
-    //}
-
     [SerializeField] GameObject inventory;
     private bool inventoryIsShown = false;
 
@@ -31,10 +24,10 @@ public class PlayerExtras : MonoBehaviour
         firstPersonController = GetComponent<FirstPersonController>();
     }
 
-    private void ToggleUI(ref bool isShown, GameObject uiObject, Action onActivate = null, Action onDeactivate = null)
+    private void ToggleUI(ref bool isShown, GameObject uiElement, Action onActivate = null, Action onDeactivate = null)
     {
         isShown = !isShown;
-        uiObject.SetActive(isShown);
+        uiElement.SetActive(isShown);
 
         if (isShown)
         {
@@ -47,6 +40,7 @@ public class PlayerExtras : MonoBehaviour
                 firstPersonController.enabled = false;
             }
         }
+
         else
         {
             onDeactivate?.Invoke();

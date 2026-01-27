@@ -46,7 +46,6 @@ namespace SA_Inventory
             ItemCreation.onGetItem += AddItem;
         }
 
-        // Instantiates items based on the item data list.
         private void GenerateInventory()
         {
             items = new List<Item>();

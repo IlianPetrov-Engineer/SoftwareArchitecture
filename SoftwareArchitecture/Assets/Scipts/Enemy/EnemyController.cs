@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using SA_Enemy;
+using UnityEngine.UI;
 
 /// <summary>
 /// Simple enemy controller that publish onEnemyCreated and onHit events when
@@ -12,10 +13,11 @@ public class EnemyController : MonoBehaviour
     private EnemyData enemyData;
     private Enemy enemy;
 
-    [SerializeField] XP xp;
+    //[SerializeField] XP xp;
 
     public event Action<Enemy> onEnemyCreated;
     public event Action<Enemy, DamageData> onHit;
+    public event Action<Enemy> onEnemyDied;
 
     void Start()
     {
@@ -25,24 +27,18 @@ public class EnemyController : MonoBehaviour
 
     public void GetHit(DamageData damageData)
     {
+        if (enemy.CurrentHealth <= 0)
+            return;
+
         enemy.CurrentHealth -= damageData.damage;
-        if (enemy.CurrentHealth < 0)
+
+        if (enemy.CurrentHealth <= 0)
         {
             enemy.CurrentHealth = 0;
+            onEnemyDied?.Invoke(enemy);
+            Destroy(gameObject);
         }
-
-        Debug.Log("Current health:" + enemy.CurrentHealth);
 
         onHit?.Invoke(enemy, damageData);
     }
-
-    public void XP()
-    {
-        xp.xp = enemyData.xp;
-        Instantiate(xp, transform.position, Quaternion.identity);
-    }
 }
-
-
-
-

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+//Not Using this
+
 /// <summary>
 /// Controls the hero's attacking behavior, including targeting enemies,
 /// launching projectiles, and managing attack animations. This class is an

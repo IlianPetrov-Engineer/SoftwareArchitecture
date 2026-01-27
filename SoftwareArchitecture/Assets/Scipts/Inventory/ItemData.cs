@@ -15,7 +15,6 @@ namespace SA_Inventory
         public int defense;
         public int value;
         public float buffPercentage;
-       // public bool isPotion;
 
         [Header("Visuals")]
         public Sprite itemIcon;
@@ -52,10 +51,6 @@ namespace SA_Inventory
         private float buffPercentage;
         public float BuffPercentage => buffPercentage;
 
-        //[SerializeField]
-        //private bool isPotion;
-        //public bool IsPotion => isPotion;
-
         [Header("Visuals")]
         public Sprite itemIcon;
         public GameObject itemModel;
@@ -71,7 +66,6 @@ namespace SA_Inventory
 
             itemIcon = itemData.itemIcon;
             itemModel = itemData.itemModel;
-            //isPotion = itemData.isPotion;
         }
 
         public ItemType itemType;
