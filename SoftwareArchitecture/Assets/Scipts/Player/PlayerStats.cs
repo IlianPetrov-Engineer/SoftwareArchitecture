@@ -13,33 +13,39 @@ public class PlayerStats : MonoBehaviour
     [Header("Progression")]
     public int currentLevel = 0;
     public int currentXP = 0;
+    public int xpNeeded = 0;
     public int skillTokens = 0;
 
     [SerializeField] List<int> xpLevelData = new List<int>();
 
-    public event Action OnLevelUp;
-    public event Action OnXPChanged;
-    public event Action OnHealthChanged;
+    public event Action onPlayerAwake;
+    public event Action onLevelUp;
+    public event Action onXPChanged;
+    public event Action onHealthChanged;
+    public event Action onPlayerDeath;
 
     private void Awake()
     {
+        xpNeeded = xpLevelData[currentLevel];
         Instance = this;
+        onPlayerAwake?.Invoke();
     }
 
     public void AddXP(int amount)
     {
         currentXP += amount;
-        OnXPChanged?.Invoke();
 
         if (currentLevel < xpLevelData.Count)
         {
-            int xpNeeded = xpLevelData[currentLevel];
-
             if (currentXP >= xpNeeded)
             {
                 LevelUp();
             }
+
+            xpNeeded = xpLevelData[currentLevel];
         }
+
+        onXPChanged?.Invoke();
     }
 
     void LevelUp()
@@ -48,14 +54,23 @@ public class PlayerStats : MonoBehaviour
         currentLevel++;
         skillTokens++;
 
-        OnLevelUp?.Invoke();
-        OnXPChanged?.Invoke();
+        onLevelUp?.Invoke();
+        onXPChanged?.Invoke();
     }
 
     public void TakeDamage(int amount)
     {
+        if (currentHealth <= 0)
+            return;
+
         currentHealth -= amount;
-        OnHealthChanged?.Invoke();
+        onHealthChanged?.Invoke();
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            onPlayerDeath?.Invoke();
+        }
     }
 
     public void Heal(int amount)
@@ -63,18 +78,4 @@ public class PlayerStats : MonoBehaviour
         currentHealth += amount;
         //OnHealthChanged?.Invoke();
     }
-
-    // ================= Checkpoint =================
-
-    //public void ApplySnapshot(PlayerStatsSnapshot snapshot)
-    //{
-    //    MaxHealth = snapshot.maxHealth;
-    //    CurrentHealth = snapshot.currentHealth;
-    //    CurrentLevel = snapshot.currentLevel;
-    //    CurrentXP = snapshot.currentXP;
-    //    SkillTokens = snapshot.skillTokens;
-
-    //    OnHealthChanged?.Invoke();
-    //    OnXPChanged?.Invoke();
-    //}
 }

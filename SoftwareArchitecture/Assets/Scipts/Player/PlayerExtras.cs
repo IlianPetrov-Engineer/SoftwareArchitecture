@@ -18,6 +18,8 @@ public class PlayerExtras : MonoBehaviour
     private StarterAssetsInputs assetsInputs;
     private FirstPersonController firstPersonController;
 
+    public Quest quest;
+
     private void Awake()
     {
         assetsInputs = GetComponent<StarterAssetsInputs>();
@@ -54,7 +56,7 @@ public class PlayerExtras : MonoBehaviour
 
     void OnInventory()
     {
-        ToggleUI(ref inventoryIsShown, inventory, onActivate: () => Inventory.Instance.ListItems());
+        ToggleUI(ref inventoryIsShown, inventory/*, onActivate: () => Inventory.Instance.ListItems()*/);
     }
 
     void OnSkillTree()

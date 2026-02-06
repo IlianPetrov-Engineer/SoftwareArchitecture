@@ -26,7 +26,7 @@ public class EnemyIdle : State
 
     public bool IsTargetInRange()
     {
-        return (Vector3.Distance(self.transform.position, target.transform.position) <= detectRange);
+        return Vector3.Distance(self.transform.position, target.transform.position) <= detectRange;
     }
 
     public bool IdleTimeOver()

@@ -12,15 +12,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private EnemyData enemyData;
     private Enemy enemy;
-
-    //[SerializeField] XP xp;
+    private EnemyNavMeshController navMeshController;
 
     public event Action<Enemy> onEnemyCreated;
     public event Action<Enemy, DamageData> onHit;
     public event Action<Enemy> onEnemyDied;
 
+    public static event Action<Enemy> OnEnemyDied;
+
     void Start()
     {
+        navMeshController = GetComponent<EnemyNavMeshController>();
         enemy = enemyData.CreateEnemy();
         onEnemyCreated?.Invoke(enemy);
     }
@@ -36,9 +38,20 @@ public class EnemyController : MonoBehaviour
         {
             enemy.CurrentHealth = 0;
             onEnemyDied?.Invoke(enemy);
+            OnEnemyDied?.Invoke(enemy);
             Destroy(gameObject);
         }
 
         onHit?.Invoke(enemy, damageData);
+    }
+
+    public void ApplyFreeze(float slowness, float duration)
+    {
+        navMeshController?.ApplyFreeze(slowness, duration);
+    }
+
+    public void ApplyForce(Vector3 force,float maxDistance)
+    {
+        navMeshController?.ApplyForce(force, maxDistance);
     }
 }

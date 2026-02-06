@@ -18,5 +18,5 @@ MonoBehaviour:
   angle: 90
   damageData:
     damage: 0
-    slowDown: 0
-    slowDownTime: 0
+    slowDown: 2
+    slowDownTime: 2

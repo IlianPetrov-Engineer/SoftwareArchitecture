@@ -15,4 +15,4 @@ MonoBehaviour:
   abilityName: Gravity Lv.1
   cooldown: 1
   radius: 3
-  force: 50
+  force: 10

@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyFacePlayer : State
@@ -31,9 +32,15 @@ public class EnemyFacePlayer : State
 
         direction = (target.position - self.position).normalized;
 
-        rotationSign = Mathf.Sign(Vector3.Dot(self.right, direction));
+        Vector3 dir = Vector3.ProjectOnPlane(direction, Vector3.up);
+        float angle = Vector3.SignedAngle(self.forward, dir, Vector3.up);
+        float step = Mathf.Clamp(angle, -rotationSpeed * Time.deltaTime, rotationSpeed * Time.deltaTime);
 
-        self.Rotate(self.up, rotationSign * rotationSpeed * Time.deltaTime);
+        self.Rotate(Vector3.up, step);
+
+        //rotationSign = Mathf.Sign(Vector3.Dot(self.right, direction));
+
+        //self.Rotate(self.up, rotationSign * rotationSpeed * Time.deltaTime);
     }
 
     public bool AlignedWithTarget()

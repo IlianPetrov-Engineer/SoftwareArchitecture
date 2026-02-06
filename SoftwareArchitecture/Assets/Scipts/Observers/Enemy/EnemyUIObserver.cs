@@ -5,24 +5,24 @@ using UnityEngine.UI;
 
 public class EnemyUIObserver : EnemyObserver
 {
-    [SerializeField] GameObject healthBar;
-    [SerializeField] GameObject healthNumber;
+    [SerializeField] Slider healthBar;
+    [SerializeField] TextMeshProUGUI healthNumber;
 
     protected override void OnEnemyCreated(Enemy enemy)
     {
-        healthBar.GetComponent<Slider>().maxValue = enemy.MaxHealth;
-        healthBar.GetComponent<Slider>().value = enemy.MaxHealth;
-        healthNumber.GetComponent<TextMeshProUGUI>().text = enemy.MaxHealth.ToString();
+        healthBar.maxValue = enemy.MaxHealth;
+        healthBar.value = enemy.MaxHealth;
+        healthNumber.text = enemy.MaxHealth.ToString();
     }
 
     protected override void OnEnemyHit(Enemy enemy, DamageData damageData)
     {
-        healthBar.GetComponent<Slider>().value = enemy.CurrentHealth;
-        healthNumber.GetComponent<TextMeshProUGUI>().text = enemy.CurrentHealth.ToString();
+        healthBar.value = enemy.CurrentHealth;
+        healthNumber.text = enemy.CurrentHealth.ToString();
     }
 
     protected override void OnEnemyDied(Enemy enemy) 
     {
-        healthBar.SetActive(false);
+        healthBar.gameObject.SetActive(false);
     }
 }

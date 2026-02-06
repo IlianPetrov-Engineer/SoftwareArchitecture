@@ -17,7 +17,7 @@ public class GravityPushAttack : Ability
                 continue;
 
             Vector3 direction = (hit.transform.position - data.player.transform.position).normalized;
-            //enemy.ApplyForce(direction * force);
+            enemy.ApplyForce(direction * force, radius);
         }
     }
 }
