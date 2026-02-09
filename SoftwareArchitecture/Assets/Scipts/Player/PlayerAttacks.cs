@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Playables;
 using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
@@ -10,10 +9,68 @@ public class PlayerAttacks : MonoBehaviour
 
     public int selectedAttack = 0;
 
+    public bool canAttack = true;
+
+    Dictionary<Ability.AbilityType, Ability> unlockedAbilities = new Dictionary<Ability.AbilityType, Ability>();
+
     Dictionary<Ability, float> lastCastTimes = new Dictionary<Ability, float>();
+
+    private void Start()
+    {
+        if (abilities[0] != null)
+        {
+            unlockedAbilities[abilities[0].abilityType] = abilities[0];
+        }
+    }
+
+    public bool LearnedAbilitiy(Ability.AbilityType type)
+    {
+        return unlockedAbilities.ContainsKey(type);
+    }
+
+    public void UnlockAbility(Ability unlockAbility)
+    {
+        if (LearnedAbilitiy(unlockAbility.abilityType))
+            return;
+
+        unlockedAbilities[unlockAbility.abilityType] = unlockAbility;
+
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            if (abilities[i] == null)
+            {
+                abilities[i] = unlockAbility;
+                return;
+            }
+        }
+    }
+
+    public void UpgradeAbility(Ability newLevelAbility)
+    {
+        if (!LearnedAbilitiy(newLevelAbility.abilityType))
+            return;
+
+        Ability previousAbility = unlockedAbilities[newLevelAbility.abilityType];
+
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            if (abilities[i] == previousAbility)
+            {
+                abilities[i] = newLevelAbility;
+                unlockedAbilities[newLevelAbility.abilityType] = newLevelAbility;
+                return;
+            }
+        }
+    }
 
     void OnCast()
     {
+        if (!canAttack)
+            return;
+
+        if (selectedAttack >= abilities.Length)
+            return;
+
         Ability ability = abilities[selectedAttack];
         if (ability == null)
             return;

@@ -4,7 +4,7 @@ using UnityEngine;
 public class GravityPushAttack : Ability
 {
     [SerializeField] float radius;
-    [SerializeField] float force;
+    public float force;
 
     protected override void ExecuteAbility(AbilityData data)
     {

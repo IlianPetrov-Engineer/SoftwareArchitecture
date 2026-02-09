@@ -64,18 +64,18 @@ public class PlayerStats : MonoBehaviour
             return;
 
         currentHealth -= amount;
-        onHealthChanged?.Invoke();
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            onPlayerDeath?.Invoke();
         }
+
+        onPlayerDeath?.Invoke();
     }
 
     public void Heal(int amount)
     {
         currentHealth += amount;
-        //OnHealthChanged?.Invoke();
+        onHealthChanged?.Invoke();
     }
 }

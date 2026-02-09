@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f22ede7bb536c40907f78c83063aec, type: 3}
-  m_Name: Gravity Lv1
+  m_Script: {fileID: 11500000, guid: 9d22b22cfb6d568478235fbbe2ac7b38, type: 3}
+  m_Name: Freeze Lv.2
   m_EditorClassIdentifier: 
-  abilityName: Gravity Lv.1
+  abilityName: Freze Lv.1
   cooldown: 1
-  abilityType: 2
-  requiredTokens: 10
-  radius: 3
-  force: 10
+  abilityType: 1
+  requiredTokens: 3
+  range: 4
+  angle: 90
+  damageData:
+    damage: 0
+    slowDown: 2
+    slowDownTime: 2

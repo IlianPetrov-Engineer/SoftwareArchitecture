@@ -19,6 +19,8 @@ public class InventoryView : MonoBehaviour
 
             obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.ItemName;
             obj.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.itemIcon;
+
+            obj.GetComponent<UseItem>().AddItem(item);
         }
     }
 }

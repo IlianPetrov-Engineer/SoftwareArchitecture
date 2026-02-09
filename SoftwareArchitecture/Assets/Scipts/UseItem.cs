@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UseItem : MonoBehaviour
 {
-    Item item;
+    public Item item;
 
     public void RemoveItem()
     {

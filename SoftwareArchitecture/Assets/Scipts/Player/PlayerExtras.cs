@@ -15,15 +15,20 @@ public class PlayerExtras : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     private bool pauseMenuIsShown = false;
 
+    [SerializeField] GameObject stats;
+
     private StarterAssetsInputs assetsInputs;
     private FirstPersonController firstPersonController;
 
     public Quest quest;
 
+    private PlayerAttacks playerAttacks;
+
     private void Awake()
     {
         assetsInputs = GetComponent<StarterAssetsInputs>();
         firstPersonController = GetComponent<FirstPersonController>();
+        playerAttacks = GetComponent<PlayerAttacks>();
     }
 
     private void ToggleUI(ref bool isShown, GameObject uiElement, Action onActivate = null, Action onDeactivate = null)
@@ -36,6 +41,7 @@ public class PlayerExtras : MonoBehaviour
             onActivate?.Invoke();
             assetsInputs.cursorLocked = false;
             assetsInputs.cursorInputForLook = false;
+            playerAttacks.canAttack = false;
 
             if (firstPersonController.Grounded)
             {
@@ -49,6 +55,7 @@ public class PlayerExtras : MonoBehaviour
             assetsInputs.cursorLocked = true;
             assetsInputs.cursorInputForLook = true;
             firstPersonController.enabled = true;
+            playerAttacks.canAttack = true;
         }
 
         assetsInputs.OnApplicationFocus(assetsInputs.cursorLocked);
@@ -56,16 +63,37 @@ public class PlayerExtras : MonoBehaviour
 
     void OnInventory()
     {
-        ToggleUI(ref inventoryIsShown, inventory/*, onActivate: () => Inventory.Instance.ListItems()*/);
+        ToggleUI(ref inventoryIsShown, inventory);
     }
 
     void OnSkillTree()
     {
-        ToggleUI(ref skillTreeIsShown, skillTree, onActivate: () => Time.timeScale = 0, onDeactivate: () => Time.timeScale = 1);
+        ToggleUI(ref skillTreeIsShown, skillTree,
+        onActivate: () =>
+        {
+            Time.timeScale = 0;
+            stats.SetActive(false);
+        },
+        onDeactivate: () =>
+        {
+            Time.timeScale = 1;
+            stats.SetActive(true);
+        }
+        );
     }
 
     void OnPauseMenu()
     {
-        ToggleUI(ref pauseMenuIsShown, pauseMenu, onActivate: () => Time.timeScale = 0, onDeactivate: () => Time.timeScale = 1);
+        ToggleUI(ref pauseMenuIsShown, pauseMenu, onActivate: () =>
+        {
+            Time.timeScale = 0;
+            stats.SetActive(false);
+        },
+        onDeactivate: () =>
+        {
+            Time.timeScale = 1;
+            stats.SetActive(true);
+        }
+        );
     }
 }

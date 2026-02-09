@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 819772426ce5a7e4b8e40b65d333c18c, type: 3}
-  m_Name: Fireball Lv1.
+  m_Name: Fireball Lv2.
   m_EditorClassIdentifier: 
   abilityName: Fireball Lv.1
   cooldown: 1
   abilityType: 0
-  requiredTokens: 0
-  abilityDescription: 'Fireball level 1 test '
+  requiredTokens: 2
+  abilityDescription: 'Fireball level 2 test '
   projectilePrefab: {fileID: 5264134200685266771, guid: 8396f6a56c4968b4ea6357041fcd0442, type: 3}
   speed: 5
   damageData:
-    damage: 100
+    damage: 110
     slowDown: 0
     slowDownTime: 0
   lifeTime: 2

@@ -5,7 +5,7 @@ public class FireballAttack : Ability
 {
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float speed;
-    [SerializeField] DamageData damageData;
+    public DamageData damageData;
     [SerializeField] float lifeTime;
 
     protected override void ExecuteAbility(AbilityData data)

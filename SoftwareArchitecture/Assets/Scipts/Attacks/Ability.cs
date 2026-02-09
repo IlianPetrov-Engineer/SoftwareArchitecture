@@ -5,6 +5,20 @@ public abstract class Ability : ScriptableObject
     public string abilityName;
     public float cooldown;
 
+    public AbilityType abilityType;
+    public int requiredTokens;
+
+    [TextArea]
+    public string abilityDescription;
+
+    public enum AbilityType
+    {
+        Fireball,
+        Freeze,
+        GravityPush
+    }
+    
+
     public void Cast(AbilityData data)
     {
         ExecuteAbility(data);

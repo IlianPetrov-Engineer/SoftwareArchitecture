@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d22b22cfb6d568478235fbbe2ac7b38, type: 3}
-  m_Name: Freeze Lv1
+  m_Name: Freeze Lv.1
   m_EditorClassIdentifier: 
   abilityName: Freze Lv.1
   cooldown: 1
+  abilityType: 1
+  requiredTokens: 1
   range: 2
   angle: 90
   damageData:

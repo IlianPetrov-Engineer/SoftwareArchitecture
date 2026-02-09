@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using TMPro;
-using UnityEngine.UI;
+//using TMPro;
+//using UnityEngine.UI;
 using UnityEngine;
-using System.Linq;
+//using System.Linq;
 using System;
 
 namespace SA_Inventory
@@ -11,17 +11,6 @@ namespace SA_Inventory
     {
         public static Inventory Instance;
 
-        //[SerializeField] Transform itemContent;
-        //[SerializeField] GameObject inventoryItem;
-
-        public UseItem[] useItems;
-
-        //// List of item data assets used to generate actual items at runtime.
-        //[SerializeField]
-        //private List<ItemData> itemDatas;
-
-        // List of instantiated items currently in the inventory.
-        [SerializeReference]
         private List<Item> items;
 
         public Item[] Items => items.ToArray();
@@ -38,7 +27,7 @@ namespace SA_Inventory
 
         private void Awake()
         {
-            //GenerateInventory();             // Create items based on itemDatas.
+            items = new List<Item>();           
             //LoadItemSortingStrategies();     // Find sorting strategies attached as components.
             Instance = this;
         }
@@ -53,15 +42,6 @@ namespace SA_Inventory
             ItemCreation.onGetItem -= AddItem;
         }
 
-        private void GenerateInventory()
-        {
-            items = new List<Item>();
-            //foreach (ItemData itemData in itemDatas)
-            //{
-            //    items.Add(itemData.CreateItem()); // Create an item from its data.
-            //}
-        }
-
         public void AddItem(Item item)
         {
             items.Add(item);
@@ -73,36 +53,6 @@ namespace SA_Inventory
             items.Remove(item);
             onInventoryChange?.Invoke();
         }
-
-        //public void ListItems()
-        //{
-        //    foreach (Transform item in itemContent)
-        //    {
-        //        Destroy(item.gameObject);
-        //    }
-
-        //    foreach (var item in Items)
-        //    {
-        //        GameObject obj = Instantiate(inventoryItem, itemContent);
-        //        var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
-        //        var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-
-        //        itemName.text = item.ItemName;
-        //        itemIcon.sprite = item.itemIcon;
-        //    }
-
-        //    SetInventoryItems();
-        //}
-
-        //public void SetInventoryItems()
-        //{
-        //    useItems = itemContent.GetComponentsInChildren<UseItem>();
-
-        //    for (int i = 0; i < items.Count; i++)
-        //    {
-        //        useItems[i].AddItem(items[i]);
-        //    }
-        //}
 
         //#region "Strategy Pattern Implementation"
         //// Loads sorting strategy components from child objects.

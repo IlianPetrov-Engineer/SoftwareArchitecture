@@ -14,11 +14,13 @@ public class EnemyController : MonoBehaviour
     private Enemy enemy;
     private EnemyNavMeshController navMeshController;
 
+    public EnemyData EnemyData => enemyData;
+
     public event Action<Enemy> onEnemyCreated;
     public event Action<Enemy, DamageData> onHit;
     public event Action<Enemy> onEnemyDied;
 
-    public static event Action<Enemy> OnEnemyDied;
+    public static event Action<EnemyController> OnEnemyDied;
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class EnemyController : MonoBehaviour
         {
             enemy.CurrentHealth = 0;
             onEnemyDied?.Invoke(enemy);
-            OnEnemyDied?.Invoke(enemy);
+            OnEnemyDied?.Invoke(this);
             Destroy(gameObject);
         }
 

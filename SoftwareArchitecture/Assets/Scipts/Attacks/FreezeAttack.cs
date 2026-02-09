@@ -5,7 +5,7 @@ public class FreezeAttack : Ability
 {
     [SerializeField] float range;
     [SerializeField] float angle;
-    [SerializeField] DamageData damageData;
+    public DamageData damageData;
 
     protected override void ExecuteAbility(AbilityData abilityData)
     {

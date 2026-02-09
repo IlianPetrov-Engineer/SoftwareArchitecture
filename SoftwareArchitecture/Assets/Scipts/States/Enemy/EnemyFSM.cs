@@ -5,6 +5,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyFSM : MonoBehaviour
 {
+    [SerializeField] EnemyController enemyController;
+
     [SerializeField]
     private FirstPersonController target;
     private NavMeshAgent navMeshAgent;
@@ -32,6 +34,8 @@ public class EnemyFSM : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
 
+        navMeshAgent.speed = enemyController.EnemyData.speed;
+
         target = GameObject.FindAnyObjectByType<FirstPersonController>();
 
         chaseState = new EnemyGoToPlayer(target.GetComponent<Transform>(), navMeshAgent, chaseThreshold, chaseRange);
@@ -47,7 +51,6 @@ public class EnemyFSM : MonoBehaviour
         //faceState.transitions.Add(new Transition(faceState.AlignedWithTarget, attackState));
 
         //attackState.transitions.Add(new Transition(attackState.AttackIsOver, faceState));
-
 
         /*idleState.onEnter += () => { animator.SetBool("Idle", true); };
         idleState.onExit += () => { animator.SetBool("Idle", false); };

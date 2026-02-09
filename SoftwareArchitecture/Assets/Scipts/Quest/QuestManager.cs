@@ -1,4 +1,5 @@
 using SA_Enemy;
+using SA_Inventory;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,13 @@ public class QuestManager : MonoBehaviour
     private void OnEnable()
     {
         EnemyController.OnEnemyDied += OnEnemyKilled;
+        ItemCreation.onGetItem += OnItemGathered;
     }
 
     private void OnDisable()
     {
         EnemyController.OnEnemyDied -= OnEnemyKilled;
+        ItemCreation.onGetItem -= OnItemGathered;
     }
 
     private void Start()
@@ -28,18 +31,29 @@ public class QuestManager : MonoBehaviour
         ActivateCurrentQuest();
     }
 
-    private void OnEnemyKilled(Enemy enemy)
+    private void OnEnemyKilled(EnemyController controller)
     {
         if (CurrentQuest == null)
             return;
 
-        CurrentQuest.goal.OnEnemyKilled();
+        CurrentQuest.goal.OnEnemyKilled(controller);
         onQuestProgressChanged?.Invoke(CurrentQuest);
 
         if (CurrentQuest.IsCompleted)
-        {
             CompleteCurrentQuest();
-        }
+    }
+
+    private void OnItemGathered(Item item)
+    {
+        if (CurrentQuest == null) 
+            return;
+
+        CurrentQuest.goal.OnItemGathered(item);
+
+        onQuestProgressChanged?.Invoke(CurrentQuest);
+
+        if (CurrentQuest.IsCompleted)
+            CompleteCurrentQuest();
     }
 
     public Quest CurrentQuest

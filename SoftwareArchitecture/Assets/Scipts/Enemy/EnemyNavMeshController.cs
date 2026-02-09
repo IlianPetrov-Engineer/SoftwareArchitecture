@@ -8,7 +8,7 @@ public class EnemyNavMeshController : MonoBehaviour
     private float startSpeed;
     private Coroutine freezeRoutine;
 
-    private void Awake()
+    private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         startSpeed = navMeshAgent.speed;
