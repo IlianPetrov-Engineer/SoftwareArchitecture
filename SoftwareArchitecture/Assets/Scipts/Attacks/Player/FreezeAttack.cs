@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/Freeze")]
+[CreateAssetMenu(menuName = "PlayerAttacks/Freeze")]
 public class FreezeAttack : Ability
 {
     [SerializeField] float range;

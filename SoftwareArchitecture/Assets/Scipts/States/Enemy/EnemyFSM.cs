@@ -2,55 +2,69 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EnemyType
+{
+    Melee,
+    Range,
+    Aura
+}
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyFSM : MonoBehaviour
 {
     [SerializeField] EnemyController enemyController;
 
-    [SerializeField]
-    private FirstPersonController target;
-    private NavMeshAgent navMeshAgent;
-    [SerializeField]
-    private float chaseRange = 3f;
-    [SerializeField]
-    private float chaseThreshold = 1f;
-    [SerializeField]
-    private float attackRange = 1.5f;
-    [SerializeField]
-    private float rotateSpeed = 90f;
-    [SerializeField]
-    private float idleTime = 2f;
+    [Header("Global")]
+    [Tooltip("These variables are used for all enemies")]
     /*[SerializeField]
     private Animator animator;*/
+    [SerializeField] FirstPersonController target;
+    private NavMeshAgent agent;
+    [SerializeField] EnemyType enemyType;
+    [SerializeField] float detectionRange = 1f;
+    [SerializeField] float rotateSpeed = 90f;
+    [SerializeField] float idleTime = 2f;
+    [SerializeField] float moveInterval = 2f;
+    [SerializeField] float moveDistance = 2f;
+    [SerializeReference] private State currentState;
 
-    private EnemyGoToPlayer chaseState;
-    private EnemyFacePlayer faceState;
-    private EnemyIdle enemyIdle;
+    [Header("Melee && Range")]
+    [Tooltip("These variables are used for the melee and range enemy.")]
+    [SerializeField] EnemyAttackController enemyAttackController;
+    [SerializeField] float attackRange = 1.5f;
 
-    [SerializeReference]
-    private State currentState;
+    [Header("Melee && Aura")]
+    [Tooltip("These variable is used for the melee and aura enemy.")]
+    [SerializeField] float chaseRange = 3f;
+
+    [Header("Range && Aura")]
+    [Tooltip("These variables are used for the range and aura enemy.")]
+    [SerializeField] float safeDistance;
+    [SerializeField] float minDistance;
+
+    [Header("Aura")]
+    [Tooltip("These variable is used for the aura enemy.")]
+    [SerializeField] float maxDistance;
+
+    private EnemyIdle idleState;
+    private EnemyChase chaseState;
+    private EnemyAttackState attackState;
+    private EnemyEscape escapeState;
+    private EnemyMaintainDistance maintainDistanceState;
+    private EnemyWizardBahaviour wizardState;
 
     void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-
-        navMeshAgent.speed = enemyController.EnemyData.speed;
-
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = enemyController.EnemyData.speed;
         target = GameObject.FindAnyObjectByType<FirstPersonController>();
 
-        chaseState = new EnemyGoToPlayer(target.GetComponent<Transform>(), navMeshAgent, chaseThreshold, chaseRange);
-        faceState = new EnemyFacePlayer(transform, target.GetComponent<Transform>(), rotateSpeed, attackRange);
-        enemyIdle = new EnemyIdle(chaseRange, transform, target.GetComponent<Transform>(), idleTime);
-
-        enemyIdle.transitions.Add(new Transition(enemyIdle.IsTargetInRange, chaseState));
-
-        chaseState.transitions.Add(new Transition(chaseState.TargetReached, faceState));
-        chaseState.transitions.Add(new Transition(chaseState.TargetOutOfRange, enemyIdle));
-
-        faceState.transitions.Add(new Transition(faceState.TargetOutOfRange, chaseState));
-        //faceState.transitions.Add(new Transition(faceState.AlignedWithTarget, attackState));
-
-        //attackState.transitions.Add(new Transition(attackState.AttackIsOver, faceState));
+        idleState = new EnemyIdle(transform, target.transform, detectionRange, idleTime, agent, moveInterval, moveDistance);
+        chaseState = new EnemyChase(transform, target.transform, chaseRange, rotateSpeed, attackRange, agent);
+        attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController, moveInterval);
+        escapeState = new EnemyEscape(transform, target.transform, rotateSpeed, agent, safeDistance);
+        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, chaseRange, rotateSpeed, agent, minDistance, maxDistance);
+        wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, moveInterval, moveDistance, enemyAttackController);
 
         /*idleState.onEnter += () => { animator.SetBool("Idle", true); };
         idleState.onExit += () => { animator.SetBool("Idle", false); };
@@ -59,7 +73,22 @@ public class EnemyFSM : MonoBehaviour
         alignToState.onEnter += () => { animator.SetBool("Aim", true); };
         alignToState.onExit += () => { animator.SetBool("Aim", false); };*/
 
-        currentState = enemyIdle;
+        switch (enemyType)
+        {
+            case EnemyType.Melee:
+                MeleeBehaviour();
+                break; 
+            
+            case EnemyType.Range:
+                RangeBehaviour();
+                break;
+
+            case EnemyType.Aura:
+                AuraBehaviour();
+                break;
+        }
+
+        currentState = idleState;
         currentState.Enter();
     }
 
@@ -74,5 +103,28 @@ public class EnemyFSM : MonoBehaviour
             currentState = nextState;
             currentState.Enter();
         }
+    }
+
+    void MeleeBehaviour()
+    {
+        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, chaseState));
+        chaseState.transitions.Add(new Transition(chaseState.TargetReached, attackState));
+        attackState.transitions.Add(new Transition(attackState.TargetOutOfRange, chaseState));
+        chaseState.transitions.Add(new Transition(chaseState.TargetOutOfRange, idleState));
+    }
+
+    void RangeBehaviour()
+    {
+        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, wizardState));
+        wizardState.transitions.Add(new Transition(wizardState.PlayerIsTooClose, escapeState));
+        escapeState.transitions.Add(new Transition(escapeState.SafeDistanceReached, wizardState));
+    }
+
+    void AuraBehaviour()
+    {
+        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, maintainDistanceState));
+        maintainDistanceState.transitions.Add(new Transition(maintainDistanceState.PlayerIsTooClose, escapeState));
+        maintainDistanceState.transitions.Add(new Transition(maintainDistanceState.OutOfRange, idleState));
+        escapeState.transitions.Add(new Transition(escapeState.SafeDistanceReached, maintainDistanceState));
     }
 }

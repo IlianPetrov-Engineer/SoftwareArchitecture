@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/GravityPush")]
+[CreateAssetMenu(menuName = "PlayerAttacks/GravityPush")]
 public class GravityPushAttack : Ability
 {
     [SerializeField] float radius;

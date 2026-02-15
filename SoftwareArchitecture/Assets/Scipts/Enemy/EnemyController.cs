@@ -9,10 +9,12 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
-    private EnemyData enemyData;
+    [SerializeField] EnemyData enemyData;
     private Enemy enemy;
     private EnemyNavMeshController navMeshController;
+
+    [SerializeField] EnemyAttack enemyAttack;
+    public EnemyAttack Attack => enemyAttack;
 
     public EnemyData EnemyData => enemyData;
 

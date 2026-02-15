@@ -1,50 +1,64 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyGoToPlayer : State
+public class EnemyChase : State
 {
+    private Transform self;
     private Transform target;
-    private NavMeshAgent navMeshAgent;
-    private float distanceThreshold;
-    private float targetRange;
+    private float chaseRange;
+    private float rotationSpeed;
+    private float attackRange;
+    private NavMeshAgent agent;
 
-    public EnemyGoToPlayer(Transform pTarget, NavMeshAgent pNavMeshAgent, float pDistanceThreshold, float pTargetRange)
+    public EnemyChase(Transform self, Transform target, float chaseRange, float rotationSpeed, float attackRange, NavMeshAgent agent)
     {
-        target = pTarget;
-        navMeshAgent = pNavMeshAgent;
-        distanceThreshold = pDistanceThreshold;
-        targetRange = pTargetRange;
+        this.self = self;
+        this.target = target;
+        this.chaseRange = chaseRange;
+        this.rotationSpeed = rotationSpeed;
+        this.attackRange = attackRange;
+        this.agent = agent;
 
-        stateName = "GoTo";
+        stateName = "Chase";
     }
 
     public override void Enter()
     {
         base.Enter();
-        //navMeshAgent.enabled = true;
-        navMeshAgent.isStopped = false;
+        agent.isStopped = false;
     }
 
     public override void Step()
     {
-        navMeshAgent.SetDestination(target.position);
         base.Step();
+
+        agent.SetDestination(target.position);
+
+        Vector3 direction = (target.position - self.position).normalized;
+
+        if (direction != Vector3.zero)
+        {
+            float angle = Vector3.SignedAngle(self.forward, direction, Vector3.up);
+            float step = Mathf.Clamp(angle, -rotationSpeed * Time.deltaTime, rotationSpeed * Time.deltaTime);
+
+            self.Rotate(Vector3.up, step);
+        }
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-        //navMeshAgent.enabled = false;
-        navMeshAgent.isStopped = true;
-    }
+    //public override void Exit()
+    //{
+    //    //base.Exit();
+    //    //navMeshAgent.enabled = false;
+    //    agent.isStopped = true;
+    //}
 
     public bool TargetReached()
     {
-        return Vector3.Distance(navMeshAgent.transform.position, target.position) <= distanceThreshold;
+        return Vector3.Distance(self.transform.position, target.position) <= attackRange;
     }
 
     public bool TargetOutOfRange()
     {
-        return Vector3.Distance(navMeshAgent.transform.position, target.position) > targetRange;
+        return Vector3.Distance(self.transform.position, target.position) > chaseRange;
     }
 }

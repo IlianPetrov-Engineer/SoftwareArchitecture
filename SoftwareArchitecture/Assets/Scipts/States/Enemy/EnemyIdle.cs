@@ -1,19 +1,25 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyIdle : State
 {
-    private float detectRange;
     private Transform self;
     private Transform target;
+    private float detectRange;
     private float idleTime;
+    
     private float startTime;
 
-    public EnemyIdle(float pDetectRange, Transform pSelf, Transform pTarget, float pIdleTime)
+    private RandomMovement randomMovement;
+
+    public EnemyIdle(Transform self, Transform target, float detectRange, float idleTime, NavMeshAgent agent, float moveInterval, float moveDistance)
     {
-        detectRange = pDetectRange;
-        self = pSelf;
-        target = pTarget;
-        idleTime = pIdleTime;
+        this.self = self;
+        this.target = target;
+        this.detectRange = detectRange;
+        this.idleTime = idleTime;
+
+        randomMovement = new RandomMovement(self, agent, moveInterval, moveDistance);
 
         stateName = "Idle";
     }
@@ -22,6 +28,14 @@ public class EnemyIdle : State
     {
         base.Enter();
         startTime = Time.time;
+    }
+
+    public override void Step()
+    {
+        base.Step();
+
+        if (IdleTimeOver())
+            randomMovement.Tick();
     }
 
     public bool IsTargetInRange()
@@ -34,3 +48,4 @@ public class EnemyIdle : State
         return Time.time > startTime + idleTime;
     }
 }
+    

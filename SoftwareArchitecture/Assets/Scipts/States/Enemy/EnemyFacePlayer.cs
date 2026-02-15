@@ -7,8 +7,8 @@ public class EnemyFacePlayer : State
     private Transform self;
     private Vector3 direction;
     private float rotationSpeed;
-    private float rotationSign;
     private float targetRange;
+    
 
     public EnemyFacePlayer(Transform pSelf, Transform pTarget, float pRotationSpeed, float pTargetRange)
     {
@@ -45,7 +45,8 @@ public class EnemyFacePlayer : State
 
     public bool AlignedWithTarget()
     {
-        return Vector3.Dot(self.forward, direction) >= 0.95f;
+        direction = (target.position - self.position).normalized;
+        return Vector3.Dot(self.forward, direction) >= 0.5f;
     }
 
     public bool TargetOutOfRange()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Attacks/Fireball")]
+[CreateAssetMenu(menuName = "PlayerAttacks/Fireball")]
 public class FireballAttack : Ability
 {
     [SerializeField] GameObject projectilePrefab;
