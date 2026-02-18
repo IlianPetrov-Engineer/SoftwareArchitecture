@@ -11,18 +11,15 @@ public class EnemyUIObserver : EnemyObserver
     protected override void OnEnemyCreated(Enemy enemy)
     {
         healthBar.maxValue = enemy.MaxHealth;
-        healthBar.value = enemy.MaxHealth;
-        healthNumber.text = enemy.MaxHealth.ToString();
+        healthBar.value = enemy.CurrentHealth;
+        healthNumber.text = $"{enemy.CurrentHealth} / {enemy.MaxHealth}";
     }
 
     protected override void OnEnemyHit(Enemy enemy, DamageData damageData)
     {
         healthBar.value = enemy.CurrentHealth;
-        healthNumber.text = enemy.CurrentHealth.ToString();
+        healthNumber.text = $"{enemy.CurrentHealth} / {enemy.MaxHealth}";
     }
 
-    protected override void OnEnemyDied(Enemy enemy) 
-    {
-        healthBar.gameObject.SetActive(false);
-    }
+    protected override void OnEnemyDied(Enemy enemy) {}
 }

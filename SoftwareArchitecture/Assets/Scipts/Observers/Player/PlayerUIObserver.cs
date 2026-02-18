@@ -1,30 +1,46 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUIObserver : PlayerObserver
 {
-    [SerializeField] TextMeshProUGUI maxHP;
     [SerializeField] TextMeshProUGUI currentHP;
+    [SerializeField] Slider healthSlider; 
     [SerializeField] TextMeshProUGUI currentLevel;
-    [SerializeField] TextMeshProUGUI requiredXP;
+    [SerializeField] Slider xpSlider;
+    [SerializeField] TextMeshProUGUI currentXP;
+    [SerializeField] TextMeshProUGUI xpPoints;
 
     protected override void OnPlayerAwake()
     {
-        maxHP.text = playerStarts.maxHealth.ToString();
-        currentHP.text = playerStarts.currentHealth.ToString();
-        currentLevel.text = playerStarts.currentLevel.ToString();
-        requiredXP.text = playerStarts.xpNeeded.ToString();
+        healthSlider.maxValue = playerStarts.maxHealth;
+        healthSlider.value = playerStarts.currentHealth;
+        currentHP.text = $"{playerStarts.currentHealth} / {playerStarts.maxHealth}";
+
+        currentLevel.text = $"{"Current Level: "} {playerStarts.currentLevel}";
+
+        xpSlider.maxValue = playerStarts.xpNeeded;
+        xpSlider.value = playerStarts.currentXP;
+        currentXP.text = $"{playerStarts.currentXP} / {playerStarts.xpNeeded}";
+
+        xpPoints.text = $"{"Skill Points: " + playerStarts.skillTokens}";
     }
 
     protected override void OnPlayerHealthChange()
     {
-        currentHP.text = playerStarts.currentHealth.ToString();
+        healthSlider.value = playerStarts.currentHealth;
+        currentHP.text = $"{playerStarts.currentHealth} / {playerStarts.maxHealth}";
     }
 
     protected override void OnXPGained()
     {
-        currentLevel.text = playerStarts.currentLevel.ToString();
-        requiredXP.text = playerStarts.xpNeeded.ToString();
+        currentLevel.text = $"{"Current Level: " } {playerStarts.currentLevel}";
+
+        xpSlider.maxValue = playerStarts.xpNeeded;
+        xpSlider.value = playerStarts.currentXP;
+        currentXP.text = $"{playerStarts.currentXP} / {playerStarts.xpNeeded}";
+
+        xpPoints.text = $"{"Skill Points: " + playerStarts.skillTokens}";
     }
 
     protected override void OnPlayerDied() {}
