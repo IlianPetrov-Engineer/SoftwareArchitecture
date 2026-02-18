@@ -17,7 +17,7 @@ MonoBehaviour:
   abilityType: 0
   requiredTokens: 0
   abilityDescription: 'Fireball level 1 test '
-  projectilePrefab: {fileID: 5264134200685266771, guid: 8396f6a56c4968b4ea6357041fcd0442, type: 3}
+  projectilePrefab: {fileID: 3272635989080325975, guid: 95498a37f229d174bb9e56b3484f57ec, type: 3}
   speed: 5
   damageData:
     damage: 100

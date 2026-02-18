@@ -6,6 +6,7 @@ public class SkillTreeButton : MonoBehaviour
     [SerializeField] Ability abilityToGive;
     [SerializeField] PlayerAttacks playerAttacks;
     [SerializeField] Button button;
+    [SerializeField] GameObject completionOverlay;
 
     public void OnPress()
     {
@@ -22,5 +23,6 @@ public class SkillTreeButton : MonoBehaviour
         stats.skillTokens -= abilityToGive.requiredTokens;
 
         button.interactable = false;
+        completionOverlay.SetActive(true);
     }
 }

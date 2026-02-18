@@ -318,6 +318,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8a652512-98cd-4c64-b5fb-a3fc4ce2ca68",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardMouse",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e7deeea1-1f14-4aad-8b19-282ea89f5cd0",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",

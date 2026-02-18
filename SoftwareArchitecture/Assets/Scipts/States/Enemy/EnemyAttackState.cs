@@ -8,16 +8,12 @@ public class EnemyAttackState : State
     private float attackRange;
     private EnemyAttackController attackController;
 
-    private float moveInterval;
-    private float timer;
-
-    public EnemyAttackState(Transform self, Transform target, float attackrange, EnemyAttackController attackController, float moveInterval)
+    public EnemyAttackState(Transform self, Transform target, float attackrange, EnemyAttackController attackController)
     {
         this.self = self;
         this.target = target;
         this.attackRange = attackrange;
         this.attackController = attackController;
-        this.moveInterval = moveInterval;
 
         stateName = "Attack";
     }
@@ -26,13 +22,10 @@ public class EnemyAttackState : State
     public override void Enter()
     {
         base.Enter();
-        timer = 0f;
     }
 
     public override void Step()
     {
-        timer += Time.deltaTime;
-
         float distance = Vector3.Distance(self.position, target.position);
 
         if (distance <= attackRange)
@@ -45,10 +38,4 @@ public class EnemyAttackState : State
     {
         return Vector3.Distance(self.position, target.position) > attackRange;
     }
-
-    public bool Move()
-    {
-        return timer >= moveInterval;
-    }
-
 }

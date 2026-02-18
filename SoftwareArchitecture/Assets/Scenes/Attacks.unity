@@ -594,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 3db2c318948e28c40930e29a3fbc7cfd, type: 2}
+  enemyAttack: {fileID: 0}
 --- !u!65 &731112344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -841,6 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d116f89e35cc4724890f5be91266adc6, type: 2}
+  enemyAttack: {fileID: 0}
 --- !u!65 &1855338524
 BoxCollider:
   m_ObjectHideFlags: 0

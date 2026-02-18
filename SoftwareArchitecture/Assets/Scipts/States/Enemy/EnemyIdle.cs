@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class EnemyIdle : State
 {
@@ -7,19 +8,22 @@ public class EnemyIdle : State
     private Transform target;
     private float detectRange;
     private float idleTime;
-    
-    private float startTime;
+
+    private float timer;
 
     private RandomMovement randomMovement;
 
-    public EnemyIdle(Transform self, Transform target, float detectRange, float idleTime, NavMeshAgent agent, float moveInterval, float moveDistance)
+    private Animator animator;
+
+    public EnemyIdle(Transform self, Transform target, float detectRange, float idleTime, NavMeshAgent agent, float moveDistance, Animator animator)
     {
         this.self = self;
         this.target = target;
         this.detectRange = detectRange;
         this.idleTime = idleTime;
+        this.animator = animator;
 
-        randomMovement = new RandomMovement(self, agent, moveInterval, moveDistance);
+        randomMovement = new RandomMovement(self, agent, idleTime, moveDistance);
 
         stateName = "Idle";
     }
@@ -27,15 +31,25 @@ public class EnemyIdle : State
     public override void Enter()
     {
         base.Enter();
-        startTime = Time.time;
     }
 
     public override void Step()
     {
         base.Step();
 
+        timer += Time.deltaTime;
+
         if (IdleTimeOver())
+        {
+            animator.SetBool("Walk", true);
             randomMovement.Tick();
+            
+            if (timer > idleTime * 2)
+                timer = 0;
+        }
+
+        if (!IdleTimeOver())
+            animator.SetBool("Walk", false);
     }
 
     public bool IsTargetInRange()
@@ -45,7 +59,6 @@ public class EnemyIdle : State
 
     public bool IdleTimeOver()
     {
-        return Time.time > startTime + idleTime;
+        return timer > idleTime;
     }
 }
-    

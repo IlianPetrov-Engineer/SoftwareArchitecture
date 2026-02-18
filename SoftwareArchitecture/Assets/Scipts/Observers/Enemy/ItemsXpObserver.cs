@@ -13,7 +13,7 @@ public class ItemsXpObserver : EnemyObserver
 
     protected override void OnEnemyDied(Enemy enemy)
     {
-        float offset = 1;
+        float offset = 2;
         Vector3 spawnPos = new Vector3(enemyController.transform.position.x, enemyController.transform.position.y + offset,
             enemyController.transform.position.z);
 

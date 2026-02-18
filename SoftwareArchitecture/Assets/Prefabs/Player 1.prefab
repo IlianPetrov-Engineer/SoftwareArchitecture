@@ -53,7 +53,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5621144146957595481}
-  - component: {fileID: 2382712598787079435}
   - component: {fileID: 6401129731333224299}
   m_Layer: 0
   m_Name: Player 1
@@ -81,25 +80,6 @@ Transform:
   - {fileID: 2844811126819649644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2382712598787079435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5356082675725627597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10dc4b4a771e8d841bdbc2ac027c65f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 50
-  currentLevel: 0
-  currentXP: 0
-  xpNeeded: 0
-  skillTokens: 0
-  xpLevelData: 0a000000140000001e00000028000000
 --- !u!114 &6401129731333224299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a249f29e6e5264685454b2db7e805f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStarts: {fileID: 2382712598787079435}
+  playerStarts: {fileID: 0}
   maxHP: {fileID: 0}
   currentHP: {fileID: 0}
   currentLevel: {fileID: 0}
@@ -401,6 +381,8 @@ MonoBehaviour:
     goal:
       requiredAmount: 0
       currentAmount: 0
+      itemData: {fileID: 0}
+      enemyData: {fileID: 0}
       goalType: 0
 --- !u!114 &3798888416131239174
 MonoBehaviour:

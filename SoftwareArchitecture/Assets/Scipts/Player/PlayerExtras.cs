@@ -82,7 +82,7 @@ public class PlayerExtras : MonoBehaviour
         );
     }
 
-    void OnPauseMenu()
+    public void OnPauseMenu()
     {
         ToggleUI(ref pauseMenuIsShown, pauseMenu, onActivate: () =>
         {

@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d116f89e35cc4724890f5be91266adc6, type: 2}
+  enemyAttack: {fileID: 0}
 --- !u!114 &1252227603504609579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,14 +375,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006ffb2704560664c98f9a673875de12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyController: {fileID: 0}
   target: {fileID: 0}
-  chaseRange: 5
-  chaseThreshold: 5
-  attackRange: 1.5
+  enemyType: 0
+  detectionRange: 1
   rotateSpeed: 90
   idleTime: 2
+  moveInterval: 2
+  moveDistance: 2
   currentState:
     rid: -2
+  enemyAttackController: {fileID: 0}
+  attackRange: 1.5
+  chaseRange: 5
+  safeDistance: 0
+  minDistance: 0
+  maxDistance: 0
   references:
     version: 2
     RefIds:

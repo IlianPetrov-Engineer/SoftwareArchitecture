@@ -11,10 +11,16 @@ public class EnemyWizardBahaviour : State
     private float dangerRange;
     private NavMeshAgent agent;
     private EnemyAttackController attackController;
+    private float stopAttack;
 
     private RandomMovement randomMovement;
 
-    public EnemyWizardBahaviour(Transform self, Transform target, float rotationSpeed, float detectionRange, float attackRange, float dangerRange, NavMeshAgent agent, float moveInterval, float moveDistance, EnemyAttackController attackController)
+    private Animator animator;
+
+    private float timer;
+    private bool isAttacking;
+
+    public EnemyWizardBahaviour(Transform self, Transform target, float rotationSpeed, float detectionRange, float attackRange, float dangerRange, NavMeshAgent agent, float moveInterval, float moveDistance, EnemyAttackController attackController, float stopAttack, Animator animator)
     {
         this.self = self;
         this.target = target;
@@ -24,6 +30,8 @@ public class EnemyWizardBahaviour : State
         this.rotationSpeed = rotationSpeed;
         this.detectionRange = detectionRange;
         this.attackController = attackController;
+        this.stopAttack = stopAttack;
+        this.animator = animator;
         
         randomMovement = new RandomMovement(self, agent, moveInterval, moveDistance);
 
@@ -34,27 +42,13 @@ public class EnemyWizardBahaviour : State
     {
         base.Enter();
         agent.isStopped = false;
+        isAttacking = false;
     }
 
     public override void Step()
     {
         base.Step();
 
-        FacePlayer();
-
-        randomMovement.Tick();
-
-        float distance = Vector3.Distance(self.position, target.position);
-
-        if (distance <= attackRange && distance >= dangerRange)
-            attackController.CanAttack(target);
-
-        if (distance > detectionRange)
-            agent.SetDestination(target.position);
-    }
-
-    private void FacePlayer()
-    {
         Vector3 direction = (target.position - self.position).normalized;
 
         if (direction != Vector3.zero)
@@ -64,6 +58,46 @@ public class EnemyWizardBahaviour : State
 
             self.Rotate(Vector3.up, step);
         }
+
+        float distance = Vector3.Distance(self.position, target.position);
+
+        if (distance <= attackRange && distance >= dangerRange)
+        {
+            timer += Time.deltaTime;
+
+            if (!isAttacking)
+            {
+                randomMovement.Tick();
+
+                if (timer >= stopAttack / 2)
+                {
+                    isAttacking = true;
+                    timer = 0;
+                    animator.SetBool("Attack", true);
+                    animator.SetBool("Walk", false);
+                }
+            }
+
+            else
+            {
+                attackController.CanAttack(target);
+
+                if (timer >= stopAttack)
+                {
+                    isAttacking = false;
+                    timer = 0;
+                    animator.SetBool("Attack", false);
+                    animator.SetBool("Walk", true);
+                }
+            }
+        }
+
+        else
+        {
+            isAttacking = false;
+            timer = 0;
+            animator.SetBool("Attack", false);
+        }
     }
 
     public bool PlayerIsTooClose()
@@ -71,16 +105,8 @@ public class EnemyWizardBahaviour : State
         return Vector3.Distance(self.position, target.position) < dangerRange;
     }
 
-
-    public bool CanAttackPlayer()
-    {
-        float distance = Vector3.Distance(self.position, target.position);
-        return distance <= attackRange && distance >= dangerRange;
-    }
-
     public bool PlayerOutOfRange()
     {
-        
         return Vector3.Distance(self.position, target.position) > detectionRange;
     }
 }

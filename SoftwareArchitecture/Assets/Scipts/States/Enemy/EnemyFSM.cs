@@ -16,15 +16,13 @@ public class EnemyFSM : MonoBehaviour
 
     [Header("Global")]
     [Tooltip("These variables are used for all enemies")]
-    /*[SerializeField]
-    private Animator animator;*/
+    [SerializeField] private Animator animator;
     [SerializeField] FirstPersonController target;
     private NavMeshAgent agent;
     [SerializeField] EnemyType enemyType;
     [SerializeField] float detectionRange = 1f;
     [SerializeField] float rotateSpeed = 90f;
     [SerializeField] float idleTime = 2f;
-    [SerializeField] float moveInterval = 2f;
     [SerializeField] float moveDistance = 2f;
     [SerializeReference] private State currentState;
 
@@ -32,10 +30,6 @@ public class EnemyFSM : MonoBehaviour
     [Tooltip("These variables are used for the melee and range enemy.")]
     [SerializeField] EnemyAttackController enemyAttackController;
     [SerializeField] float attackRange = 1.5f;
-
-    [Header("Melee && Aura")]
-    [Tooltip("These variable is used for the melee and aura enemy.")]
-    [SerializeField] float chaseRange = 3f;
 
     [Header("Range && Aura")]
     [Tooltip("These variables are used for the range and aura enemy.")]
@@ -59,19 +53,12 @@ public class EnemyFSM : MonoBehaviour
         agent.speed = enemyController.EnemyData.speed;
         target = GameObject.FindAnyObjectByType<FirstPersonController>();
 
-        idleState = new EnemyIdle(transform, target.transform, detectionRange, idleTime, agent, moveInterval, moveDistance);
-        chaseState = new EnemyChase(transform, target.transform, chaseRange, rotateSpeed, attackRange, agent);
-        attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController, moveInterval);
+        idleState = new EnemyIdle(transform, target.transform, detectionRange, idleTime, agent, moveDistance, animator);
+        chaseState = new EnemyChase(transform, target.transform, detectionRange, rotateSpeed, attackRange, agent);
+        attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController);
         escapeState = new EnemyEscape(transform, target.transform, rotateSpeed, agent, safeDistance);
-        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, chaseRange, rotateSpeed, agent, minDistance, maxDistance);
-        wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, moveInterval, moveDistance, enemyAttackController);
-
-        /*idleState.onEnter += () => { animator.SetBool("Idle", true); };
-        idleState.onExit += () => { animator.SetBool("Idle", false); };
-        moveToState.onEnter += () => { animator.SetBool("Chase", true); };
-        moveToState.onExit += () => { animator.SetBool("Chase", false); };
-        alignToState.onEnter += () => { animator.SetBool("Aim", true); };
-        alignToState.onExit += () => { animator.SetBool("Aim", false); };*/
+        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator);
+        wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator);
 
         switch (enemyType)
         {
@@ -111,13 +98,28 @@ public class EnemyFSM : MonoBehaviour
         chaseState.transitions.Add(new Transition(chaseState.TargetReached, attackState));
         attackState.transitions.Add(new Transition(attackState.TargetOutOfRange, chaseState));
         chaseState.transitions.Add(new Transition(chaseState.TargetOutOfRange, idleState));
+
+        idleState.onExit += () => { animator.SetBool("Walk", false); };
+        chaseState.onEnter += () => { animator.SetBool("Chase", true); };
+        chaseState.onExit += () => { animator.SetBool("Chase", false); };
+        attackState.onEnter += () => { animator.Play("Attack01 0"); };
+        attackState.onEnter += () => { animator.SetBool("Attack", true); };
+        attackState.onExit += () => {animator.SetBool("Attack", false); };
+        
     }
 
     void RangeBehaviour()
     {
         idleState.transitions.Add(new Transition(idleState.IsTargetInRange, wizardState));
         wizardState.transitions.Add(new Transition(wizardState.PlayerIsTooClose, escapeState));
+        wizardState.transitions.Add(new Transition(wizardState.PlayerOutOfRange, idleState));
         escapeState.transitions.Add(new Transition(escapeState.SafeDistanceReached, wizardState));
+
+        idleState.onExit += () => { animator.SetBool("Walk", false); };
+        wizardState.onEnter += () => { animator.SetBool("Walk", true); };
+        wizardState.onExit += () => { animator.SetBool("Attack", false); };
+        escapeState.onEnter += () => { animator.SetBool("Walk", true); };
+        escapeState.onExit += () => { animator.SetBool("Walk", false); };
     }
 
     void AuraBehaviour()
@@ -126,5 +128,10 @@ public class EnemyFSM : MonoBehaviour
         maintainDistanceState.transitions.Add(new Transition(maintainDistanceState.PlayerIsTooClose, escapeState));
         maintainDistanceState.transitions.Add(new Transition(maintainDistanceState.OutOfRange, idleState));
         escapeState.transitions.Add(new Transition(escapeState.SafeDistanceReached, maintainDistanceState));
+
+        idleState.onExit += () => { animator.SetBool("Walk", false); };
+        escapeState.onEnter += () => { animator.SetBool("Maintain", true); };
+        escapeState.onEnter += () => { animator.SetBool("Attack", false); };
+        escapeState.onExit += () => { animator.SetBool("Maintain", false); };
     }
 }

@@ -13,7 +13,7 @@ public class RangeAttack : EnemyAttack
         float offset = 2;
 
         Vector3 direction = enemyController.transform.forward;
-        Vector3 spawnPos = enemyController.transform.position + direction * offset;
+        Vector3 spawnPos = new Vector3(enemyController.transform.position.x, enemyController.transform.position.y + offset / 2, enemyController.transform.position.z) + direction * offset;
 
         GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.LookRotation(direction));
         projectile.GetComponent<Rigidbody>().linearVelocity = direction * speed;
