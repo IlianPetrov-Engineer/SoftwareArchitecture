@@ -16,6 +16,7 @@ public class PlayerExtras : MonoBehaviour
     private bool pauseMenuIsShown = false;
 
     [SerializeField] GameObject stats;
+    [SerializeField] GameObject questUI;
 
     private StarterAssetsInputs assetsInputs;
     private FirstPersonController firstPersonController;
@@ -73,11 +74,13 @@ public class PlayerExtras : MonoBehaviour
         {
             Time.timeScale = 0;
             stats.SetActive(false);
+            questUI.SetActive(false);
         },
         onDeactivate: () =>
         {
             Time.timeScale = 1;
             stats.SetActive(true);
+            questUI.SetActive(true);
         }
         );
     }
@@ -88,11 +91,13 @@ public class PlayerExtras : MonoBehaviour
         {
             Time.timeScale = 0;
             stats.SetActive(false);
+            questUI.SetActive(false);
         },
         onDeactivate: () =>
         {
             Time.timeScale = 1;
             stats.SetActive(true);
+            questUI.SetActive(true);
         }
         );
     }

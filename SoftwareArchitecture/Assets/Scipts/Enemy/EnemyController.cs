@@ -38,15 +38,14 @@ public class EnemyController : MonoBehaviour
 
         enemy.CurrentHealth -= damageData.damage;
 
+        onHit?.Invoke(enemy, damageData);
+
         if (enemy.CurrentHealth <= 0)
         {
             enemy.CurrentHealth = 0;
             onEnemyDied?.Invoke(enemy);
             OnEnemyDied?.Invoke(this);
-            Destroy(gameObject);
         }
-
-        onHit?.Invoke(enemy, damageData);
     }
 
     public void ApplyFreeze(float slowness, float duration)

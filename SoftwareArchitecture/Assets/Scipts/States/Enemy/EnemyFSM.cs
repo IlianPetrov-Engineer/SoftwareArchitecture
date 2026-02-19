@@ -17,9 +17,10 @@ public class EnemyFSM : MonoBehaviour
     [Header("Global")]
     [Tooltip("These variables are used for all enemies")]
     [SerializeField] private Animator animator;
+    public bool animationLock = false;
     [SerializeField] FirstPersonController target;
     private NavMeshAgent agent;
-    [SerializeField] EnemyType enemyType;
+    public EnemyType enemyType;
     [SerializeField] float detectionRange = 1f;
     [SerializeField] float rotateSpeed = 90f;
     [SerializeField] float idleTime = 2f;
@@ -57,7 +58,7 @@ public class EnemyFSM : MonoBehaviour
         chaseState = new EnemyChase(transform, target.transform, detectionRange, rotateSpeed, attackRange, agent);
         attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController);
         escapeState = new EnemyEscape(transform, target.transform, rotateSpeed, agent, safeDistance);
-        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator);
+        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator, enemyAttackController);
         wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator);
 
         switch (enemyType)
@@ -81,6 +82,9 @@ public class EnemyFSM : MonoBehaviour
 
     void Update()
     {
+        if (animationLock)
+            return;
+
         currentState.Step();
         State nextState = currentState.NextState();
 

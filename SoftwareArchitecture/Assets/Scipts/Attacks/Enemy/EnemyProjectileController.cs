@@ -18,8 +18,6 @@ public class EnemyProjectileController : MonoBehaviour
         if (player != null)
             player.TakeDamage(damage);
 
-        Debug.Log(player.ToString());
-
         Destroy(gameObject);
     }
 }

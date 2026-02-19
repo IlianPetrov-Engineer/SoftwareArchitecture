@@ -10,10 +10,11 @@ public class EnemyMaintainDistance : State
     private NavMeshAgent agent;
     private float minDistance;
     private float maxDistance;
+    private EnemyAttackController attackController;
 
     private Animator animator;
 
-    public EnemyMaintainDistance(Transform self, Transform target, float chaseRange, float rotationSpeed, NavMeshAgent agent, float minDistance, float maxDistance, Animator animator)
+    public EnemyMaintainDistance(Transform self, Transform target, float chaseRange, float rotationSpeed, NavMeshAgent agent, float minDistance, float maxDistance, Animator animator, EnemyAttackController attackController)
     {
         this.self = self;
         this.target = target;
@@ -23,6 +24,7 @@ public class EnemyMaintainDistance : State
         this.rotationSpeed = rotationSpeed;
         this.chaseRange = chaseRange;
         this.animator = animator;
+        this.attackController = attackController;
 
         stateName = "MaintainDistance";
     }
@@ -52,6 +54,7 @@ public class EnemyMaintainDistance : State
         {
             agent.SetDestination(target.position);
             animator.SetBool("Maintain", true);
+            animator.SetBool("Attack", false);
         }
 
         else if (distance >= minDistance && distance <= maxDistance)
@@ -59,6 +62,13 @@ public class EnemyMaintainDistance : State
             agent.ResetPath();
             animator.SetBool("Maintain", false);
             animator.SetBool("Attack", true);
+            attackController.CanAttack(target);
+        }
+
+        if (distance > chaseRange)
+        {
+            animator.SetBool("Attack", false);
+            animator.SetBool("Maintain", false);
         }
     }
 
