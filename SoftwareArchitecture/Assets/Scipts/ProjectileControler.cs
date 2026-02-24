@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    private DamageData damageData;
+    private DamageContext context;
 
-    public void Initialise(DamageData data, float lifetime)
+    public void Initialise(DamageContext context, float lifetime)
     {
-        damageData = data;
+        this.context = context;
         Destroy(gameObject, lifetime);
     }
 
@@ -16,7 +16,7 @@ public class ProjectileController : MonoBehaviour
         EnemyController enemy = collision.collider.GetComponent<EnemyController>();
 
         if (enemy != null)
-            enemy.GetHit(damageData);
+            enemy.GetHit(context);
 
         Destroy(gameObject);
     }

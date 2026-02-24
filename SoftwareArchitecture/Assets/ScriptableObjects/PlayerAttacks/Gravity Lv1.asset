@@ -16,5 +16,10 @@ MonoBehaviour:
   cooldown: 1
   abilityType: 2
   requiredTokens: 10
-  radius: 3
+  abilityDescription: 
+  radius: 6
   force: 10
+  damageData:
+    damage: 0
+    slowDown: 0
+    duration: 0.2

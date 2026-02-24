@@ -22,5 +22,5 @@ MonoBehaviour:
   damageData:
     damage: 100
     slowDown: 0
-    slowDownTime: 0
+    duration: 0.2
   lifeTime: 2

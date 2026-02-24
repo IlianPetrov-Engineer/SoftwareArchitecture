@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "PlayerAttacks/Freeze")]
@@ -7,19 +8,19 @@ public class FreezeAttack : Ability
     [SerializeField] float angle;
     public DamageData damageData;
 
-    protected override void ExecuteAbility(AbilityData abilityData)
+    protected override void ExecuteAbility(AbilityData data)
     {
-        Collider[] hits = Physics.OverlapSphere(abilityData.player.position, range, abilityData.enemy);
+        Collider[] hits = Physics.OverlapSphere(data.player.position, range, data.enemy);
 
         foreach (Collider hit in hits)
         {
-            Vector3 direction = (hit.transform.position - abilityData.player.transform.position).normalized;
-            float dotAngle = Vector3.Angle(abilityData.player.forward, direction);
+            Vector3 direction = (hit.transform.position - data.player.transform.position).normalized;
+            float dotAngle = Vector3.Angle(data.player.forward, direction);
 
             if (dotAngle > angle * 0.5f) //enemy is ourside the attack
                 continue;
 
-            if (Physics.Raycast(abilityData.camera.position, direction, out RaycastHit ray, range))
+            if (Physics.Raycast(data.camera.position, direction, out RaycastHit ray, range))
             {
                 if (ray.collider != hit)
                     continue;
@@ -28,9 +29,11 @@ public class FreezeAttack : Ability
             EnemyController enemy = hit.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                enemy.GetHit(damageData);
+                var context = new DamageContext(damageData, abilityType, data.player);
 
-                enemy.ApplyFreeze(damageData.slowDown, damageData.slowDownTime);
+                enemy.GetHit(context);
+
+                enemy.ApplyFreeze(damageData.slowDown, damageData.duration);
             }
         }
     }

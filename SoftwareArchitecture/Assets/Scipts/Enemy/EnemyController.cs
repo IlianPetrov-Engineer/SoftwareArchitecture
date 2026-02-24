@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     public EnemyData EnemyData => enemyData;
 
     public event Action<Enemy> onEnemyCreated;
-    public event Action<Enemy, DamageData> onHit;
+    public event Action<Enemy, DamageContext> onHit;
     public event Action<Enemy> onEnemyDied;
 
     public static event Action<EnemyController> OnEnemyDied;
@@ -31,14 +31,14 @@ public class EnemyController : MonoBehaviour
         onEnemyCreated?.Invoke(enemy);
     }
 
-    public void GetHit(DamageData damageData)
+    public void GetHit(DamageContext context)
     {
         if (enemy.CurrentHealth <= 0)
             return;
 
-        enemy.CurrentHealth -= damageData.damage;
+        enemy.CurrentHealth -= context.damageData.damage;
 
-        onHit?.Invoke(enemy, damageData);
+        onHit?.Invoke(enemy, context);
 
         if (enemy.CurrentHealth <= 0)
         {

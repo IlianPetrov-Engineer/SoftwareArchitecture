@@ -3,8 +3,7 @@ using UnityEngine;
 
 public abstract class PlayerObserver : MonoBehaviour
 {
-    [SerializeField]
-    protected PlayerStats playerStarts;
+    [SerializeField] protected PlayerStats playerStarts;
 
     protected void OnEnable()
     {

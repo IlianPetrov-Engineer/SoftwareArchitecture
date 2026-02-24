@@ -6,7 +6,7 @@ public class EnemyNavMeshController : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
     private float startSpeed;
-    private Coroutine freezeRoutine;
+    private Coroutine routine;
 
     private void Start()
     {
@@ -16,10 +16,10 @@ public class EnemyNavMeshController : MonoBehaviour
 
     public void ApplyFreeze(float slowness, float duration)
     {
-        if (freezeRoutine != null)
+        if (routine != null)
             StopAllCoroutines();
 
-        freezeRoutine = StartCoroutine(FreezeRoutine(slowness, duration));
+        routine = StartCoroutine(FreezeRoutine(slowness, duration));
     }
 
     private IEnumerator FreezeRoutine(float slowness, float duration)
@@ -36,7 +36,7 @@ public class EnemyNavMeshController : MonoBehaviour
 
     public void ApplyForce(Vector3 force, float maxDistance)
     {
-        StartCoroutine(PushCoroutine(force, maxDistance));
+        routine = StartCoroutine(PushCoroutine(force, maxDistance));
     }
 
     private IEnumerator PushCoroutine(Vector3 force, float maxDistance)

@@ -8,8 +8,7 @@ using SA_Enemy;
 
 public abstract class EnemyObserver : MonoBehaviour
 {
-    [SerializeField]
-    protected EnemyController enemyController;
+    [SerializeField] protected EnemyController enemyController;
 
     protected void OnEnable()
     {
@@ -27,7 +26,7 @@ public abstract class EnemyObserver : MonoBehaviour
 
     protected abstract void OnEnemyCreated(Enemy enemy);
 
-    protected abstract void OnEnemyHit(Enemy enemy, DamageData damageData);
+    protected abstract void OnEnemyHit(Enemy enemy, DamageContext context);
 
     protected abstract void OnEnemyDied(Enemy enemy);
 }

@@ -42,7 +42,7 @@ public class SkillTreePresenter : AbilityPresenter
         else if (refAbility is FreezeAttack freeze)
         {
             text += "Slow: " + freeze.damageData.slowDown;
-            text += "\nDuration: " + freeze.damageData.slowDownTime;
+            text += "\nDuration: " + freeze.damageData.duration;
         }
         
         else if (refAbility is GravityPushAttack gravity)

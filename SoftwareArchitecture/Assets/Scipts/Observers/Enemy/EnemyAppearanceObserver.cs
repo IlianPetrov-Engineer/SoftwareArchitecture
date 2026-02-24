@@ -7,12 +7,13 @@ public class EnemyAppearanceObserver : EnemyObserver
     [SerializeField] Renderer enemyBody;
     [SerializeField] Animator animator;
     [SerializeField] EnemyFSM enemyFSM;
+    [SerializeField] AttackColourConfigurator colourConfigurator;
 
     protected override void OnEnemyCreated(Enemy enemy) {}
 
-    protected override void OnEnemyHit(Enemy enemy, DamageData damageData)
+    protected override void OnEnemyHit(Enemy enemy, DamageContext context)
     {
-        StartCoroutine(FlashRed());
+        StartCoroutine(Flash(context));
     }
 
     protected override void OnEnemyDied(Enemy enemy)
@@ -20,16 +21,17 @@ public class EnemyAppearanceObserver : EnemyObserver
         StartCoroutine(PlayDeathAndDestroy());
     }
 
-    private IEnumerator FlashRed()
+    private IEnumerator Flash(DamageContext context)
     {
         enemyFSM.animationLock = true;
         animator.Play("Get Hit");
 
+        Color colour = GetColour(context.abilityType);
+
         Color original = enemyBody.material.color;
+        enemyBody.material.color = colour;
 
-        enemyBody.material.color = Color.red;
-
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(context.damageData.duration);
 
         enemyBody.material.color = original;
         enemyFSM.animationLock = false;
@@ -48,5 +50,23 @@ public class EnemyAppearanceObserver : EnemyObserver
         enemyFSM.animationLock = false;
 
         Destroy(gameObject);
+    }
+
+    private Color GetColour(Ability.AbilityType abilityType)
+    {
+        switch (abilityType)
+        {
+            case Ability.AbilityType.Fireball:
+                return colourConfigurator.fireballAttack;
+
+            case Ability.AbilityType.Freeze:
+                return colourConfigurator.freezeAttack;
+
+            case Ability.AbilityType.GravityPush:
+                return colourConfigurator.gravityAttack;
+
+            default:
+                return Color.red;
+        }
     }
 }

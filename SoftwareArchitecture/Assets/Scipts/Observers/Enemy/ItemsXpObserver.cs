@@ -9,7 +9,7 @@ public class ItemsXpObserver : EnemyObserver
 
     protected override void OnEnemyCreated(Enemy enemy) {}
 
-    protected override void OnEnemyHit(Enemy enemy, DamageData damageData) {}
+    protected override void OnEnemyHit(Enemy enemy, DamageContext context) {}
 
     protected override void OnEnemyDied(Enemy enemy)
     {

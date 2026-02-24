@@ -15,7 +15,7 @@ public class EnemyUIObserver : EnemyObserver
         healthNumber.text = $"{enemy.CurrentHealth} / {enemy.MaxHealth}";
     }
 
-    protected override void OnEnemyHit(Enemy enemy, DamageData damageData)
+    protected override void OnEnemyHit(Enemy enemy, DamageContext context)
     {
         healthBar.value = enemy.CurrentHealth;
         healthNumber.text = $"{enemy.CurrentHealth} / {enemy.MaxHealth}";

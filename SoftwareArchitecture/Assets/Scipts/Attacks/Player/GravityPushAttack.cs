@@ -5,6 +5,7 @@ public class GravityPushAttack : Ability
 {
     [SerializeField] float radius;
     public float force;
+    [SerializeField] DamageData damageData;
 
     protected override void ExecuteAbility(AbilityData data)
     {
@@ -13,11 +14,15 @@ public class GravityPushAttack : Ability
         foreach (Collider hit in hits)
         {
             EnemyController enemy = hit.GetComponent<EnemyController>();
-            if (enemy == null)
-                continue;
 
-            Vector3 direction = (hit.transform.position - data.player.transform.position).normalized;
-            enemy.ApplyForce(direction * force, radius);
+            if (enemy != null)
+            {
+                var context = new DamageContext(damageData, abilityType, data.player);
+                enemy.GetHit(context);
+
+                Vector3 direction = (hit.transform.position - data.player.transform.position).normalized;
+                enemy.ApplyForce(direction * force, radius);
+            }
         }
     }
 }

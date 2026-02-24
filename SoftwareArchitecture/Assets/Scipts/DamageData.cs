@@ -6,5 +6,5 @@ public class DamageData
 {
     public int damage;
     public float slowDown;
-    public float slowDownTime;
+    public float duration;
 }

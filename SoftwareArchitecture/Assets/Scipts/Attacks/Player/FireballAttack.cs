@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Ability;
 
 [CreateAssetMenu(menuName = "PlayerAttacks/Fireball")]
 public class FireballAttack : Ability
@@ -18,7 +19,8 @@ public class FireballAttack : Ability
         GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.LookRotation(direction));
         projectile.GetComponent<Rigidbody>().linearVelocity = direction * speed;
 
+        var context = new DamageContext(damageData, abilityType, data.player);
         ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-        projectileController.Initialise(damageData, lifeTime);
+        projectileController.Initialise(context, lifeTime);
     }
 }

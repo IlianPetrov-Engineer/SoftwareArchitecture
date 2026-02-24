@@ -1,13 +1,7 @@
+using SA_Enemy;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
-
-public enum EnemyType
-{
-    Melee,
-    Range,
-    Aura
-}
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyFSM : MonoBehaviour
@@ -20,7 +14,7 @@ public class EnemyFSM : MonoBehaviour
     public bool animationLock = false;
     [SerializeField] FirstPersonController target;
     private NavMeshAgent agent;
-    public EnemyType enemyType;
+    public EnemyData enemyData;
     [SerializeField] float detectionRange = 1f;
     [SerializeField] float rotateSpeed = 90f;
     [SerializeField] float idleTime = 2f;
@@ -61,17 +55,17 @@ public class EnemyFSM : MonoBehaviour
         maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator, enemyAttackController);
         wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator);
 
-        switch (enemyType)
+        switch (enemyData.enemyBehaviour)
         {
-            case EnemyType.Melee:
-                MeleeBehaviour();
-                break; 
+            case EnemyData.EnemyBehaviour.Melee:
+                    MeleeBehaviour();
+                    break; 
             
-            case EnemyType.Range:
+            case EnemyData.EnemyBehaviour.Range:
                 RangeBehaviour();
                 break;
 
-            case EnemyType.Aura:
+            case EnemyData.EnemyBehaviour.Aura:
                 AuraBehaviour();
                 break;
         }

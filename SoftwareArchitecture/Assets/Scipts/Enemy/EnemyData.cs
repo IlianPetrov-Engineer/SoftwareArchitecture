@@ -13,14 +13,14 @@ namespace SA_Enemy
         public float speed;
         public int xp;
 
+        public EnemyBehaviour enemyBehaviour;
+
         public enum EnemyBehaviour
         {
             Melee,
             Range,
             Aura
         }
-
-        public EnemyBehaviour enemyBehaviour;
 
         public Enemy CreateEnemy()
         {

@@ -16,9 +16,10 @@ MonoBehaviour:
   cooldown: 1
   abilityType: 1
   requiredTokens: 1
-  range: 2
-  angle: 90
+  abilityDescription: 
+  range: 10
+  angle: 180
   damageData:
     damage: 0
-    slowDown: 2
-    slowDownTime: 2
+    slowDown: 0.2
+    duration: 2
