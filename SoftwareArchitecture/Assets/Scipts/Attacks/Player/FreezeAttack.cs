@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerAttacks/Freeze")]
 public class FreezeAttack : Ability
 {
-    [SerializeField] float range;
-    [SerializeField] float angle;
+    public float range;
+    public float angle;
     public DamageData damageData;
 
     protected override void ExecuteAbility(AbilityData data)

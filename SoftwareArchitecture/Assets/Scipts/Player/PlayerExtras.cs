@@ -17,6 +17,7 @@ public class PlayerExtras : MonoBehaviour
 
     [SerializeField] GameObject stats;
     [SerializeField] GameObject questUI;
+    [SerializeField] GameObject currentAttackUI;
 
     private StarterAssetsInputs assetsInputs;
     private FirstPersonController firstPersonController;
@@ -75,29 +76,33 @@ public class PlayerExtras : MonoBehaviour
             Time.timeScale = 0;
             stats.SetActive(false);
             questUI.SetActive(false);
+            currentAttackUI.SetActive(false);
         },
         onDeactivate: () =>
         {
             Time.timeScale = 1;
             stats.SetActive(true);
             questUI.SetActive(true);
+            currentAttackUI.SetActive(true);
         }
         );
     }
 
-    public void OnPauseMenu()
+     void OnPauseMenu()
     {
         ToggleUI(ref pauseMenuIsShown, pauseMenu, onActivate: () =>
         {
             Time.timeScale = 0;
             stats.SetActive(false);
             questUI.SetActive(false);
+            currentAttackUI.SetActive(false);
         },
         onDeactivate: () =>
         {
             Time.timeScale = 1;
             stats.SetActive(true);
             questUI.SetActive(true);
+            currentAttackUI.SetActive(true);
         }
         );
     }

@@ -11,6 +11,10 @@ public class PlayerUIObserver : PlayerObserver
     [SerializeField] TextMeshProUGUI currentXP;
     [SerializeField] TextMeshProUGUI xpPoints;
 
+    [SerializeField] GameObject deathUI;
+    [SerializeField] GameObject allUI;
+
+
     protected override void OnPlayerAwake()
     {
         healthSlider.maxValue = playerStarts.maxHealth;
@@ -24,6 +28,8 @@ public class PlayerUIObserver : PlayerObserver
         currentXP.text = $"{playerStarts.currentXP} / {playerStarts.xpNeeded}";
 
         xpPoints.text = $"{"Skill Points: " + playerStarts.skillTokens}";
+        allUI.SetActive(true);
+        deathUI.SetActive(false);
     }
 
     protected override void OnPlayerHealthChange()
@@ -43,5 +49,9 @@ public class PlayerUIObserver : PlayerObserver
         xpPoints.text = $"{"Skill Points: " + playerStarts.skillTokens}";
     }
 
-    protected override void OnPlayerDied() {}
+    protected override void OnPlayerDied() 
+    {
+        deathUI.SetActive(true);
+        allUI.SetActive(false);
+    }
 }

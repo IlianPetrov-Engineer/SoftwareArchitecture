@@ -9,10 +9,13 @@ using System.Collections.Generic;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private float spawnInterval = 2f;
+    [SerializeField] float spawnInterval = 2f;
+    [SerializeField] int maxEnemyCount;
+    private int currentCount;
 
-    EnemyPrefabs enemyPrefabs;
+    private bool isSpawning = true;
+
+    public EnemyPrefabs enemyPrefabs;
    
     void Start()
     {
@@ -22,19 +25,16 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnCoroutine()
     {
-        float timePassed = 0f;
-        while (true)
+        while (isSpawning)
         {
             yield return new WaitForSeconds(spawnInterval);
 
-            timePassed += Time.time;
+            if (currentCount >= maxEnemyCount)
+                yield break;
 
-            if(timePassed >= spawnInterval)
-            {
-                GameObject enemyPrefab = enemyPrefabs.GetEnemyPrefab();
-                Instantiate(enemyPrefab, Spawner(),Quaternion.identity);
-                timePassed = 0f;
-            }
+            GameObject enemyPrefab = enemyPrefabs.GetEnemyPrefab();
+            Instantiate(enemyPrefab, Spawner(), Quaternion.identity);
+            currentCount++;
         }
     }
 

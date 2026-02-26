@@ -1,4 +1,3 @@
-using SA_Enemy;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +6,10 @@ public class PlayerAppearanceObserver : PlayerObserver
 {
     [SerializeField] Image hitOverlay;
 
-    protected override void OnPlayerAwake() {}
+    protected override void OnPlayerAwake() 
+    {
+        hitOverlay.color = new Color32(255, 0, 0, 0);
+    }
 
     protected override void OnPlayerHealthChange() 
     {
@@ -16,7 +18,10 @@ public class PlayerAppearanceObserver : PlayerObserver
 
     protected override void OnXPGained() {}
 
-    protected override void OnPlayerDied() {}
+    protected override void OnPlayerDied() 
+    {
+        hitOverlay.color = new Color32(255, 0, 0, 128);
+    }
 
     private IEnumerator FlashRed()
     {

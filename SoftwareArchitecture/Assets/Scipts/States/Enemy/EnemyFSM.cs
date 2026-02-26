@@ -10,7 +10,7 @@ public class EnemyFSM : MonoBehaviour
 
     [Header("Global")]
     [Tooltip("These variables are used for all enemies")]
-    [SerializeField] private Animator animator;
+    [SerializeField] Animator animator;
     public bool animationLock = false;
     [SerializeField] FirstPersonController target;
     private NavMeshAgent agent;
@@ -19,7 +19,8 @@ public class EnemyFSM : MonoBehaviour
     [SerializeField] float rotateSpeed = 90f;
     [SerializeField] float idleTime = 2f;
     [SerializeField] float moveDistance = 2f;
-    [SerializeReference] private State currentState;
+    [SerializeReference] State currentState;
+    [SerializeField] bool playerIsDead = false;
 
     [Header("Melee && Range")]
     [Tooltip("These variables are used for the melee and range enemy.")]
@@ -41,6 +42,17 @@ public class EnemyFSM : MonoBehaviour
     private EnemyEscape escapeState;
     private EnemyMaintainDistance maintainDistanceState;
     private EnemyWizardBahaviour wizardState;
+
+    private void OnEnable()
+    {
+        PlayerStats.Instance.onPlayerDeath += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        PlayerStats.Instance.onPlayerDeath -= OnPlayerDeath;
+    }
+
 
     void Start()
     {
@@ -76,7 +88,7 @@ public class EnemyFSM : MonoBehaviour
 
     void Update()
     {
-        if (animationLock)
+        if (animationLock || playerIsDead)
             return;
 
         currentState.Step();
@@ -131,5 +143,14 @@ public class EnemyFSM : MonoBehaviour
         escapeState.onEnter += () => { animator.SetBool("Maintain", true); };
         escapeState.onEnter += () => { animator.SetBool("Attack", false); };
         escapeState.onExit += () => { animator.SetBool("Maintain", false); };
+    }
+
+    void OnPlayerDeath()
+    {
+        playerIsDead = true;
+        agent.ResetPath();
+
+        currentState.Exit();
+        currentState = idleState;
     }
 }

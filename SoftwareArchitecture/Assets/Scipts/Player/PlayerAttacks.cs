@@ -106,4 +106,12 @@ public class PlayerAttacks : MonoBehaviour
     {
         selectedAttack = 2;
     }
+
+    public Ability GetSelectedAbility()
+    {
+        if (selectedAttack >= abilities.Length)
+            return null;
+
+        return abilities[selectedAttack];
+    }
 }

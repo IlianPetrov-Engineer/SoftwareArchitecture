@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PlayerAttacks/GravityPush")]
 public class GravityPushAttack : Ability
 {
-    [SerializeField] float radius;
+    public float radius;
     public float force;
     [SerializeField] DamageData damageData;
 
