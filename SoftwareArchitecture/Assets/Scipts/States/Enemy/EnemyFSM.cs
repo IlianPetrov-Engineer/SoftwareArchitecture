@@ -60,12 +60,15 @@ public class EnemyFSM : MonoBehaviour
         agent.speed = enemyController.EnemyData.speed;
         target = GameObject.FindAnyObjectByType<FirstPersonController>();
 
+        EnemyAttack mainAttack = enemyController.Attack[0];
+        EnemyAttack secondaryAttack = enemyController.Attack.Count > 1 ? enemyController.Attack[1] : enemyController.Attack[0];
+
         idleState = new EnemyIdle(transform, target.transform, detectionRange, idleTime, agent, moveDistance, animator);
         chaseState = new EnemyChase(transform, target.transform, detectionRange, rotateSpeed, attackRange, agent);
-        attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController);
+        attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController, mainAttack);
         escapeState = new EnemyEscape(transform, target.transform, rotateSpeed, agent, safeDistance);
-        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator, enemyAttackController);
-        wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator);
+        maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator, enemyAttackController, mainAttack);
+        wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator, secondaryAttack);
 
         switch (enemyData.enemyBehaviour)
         {
@@ -79,6 +82,10 @@ public class EnemyFSM : MonoBehaviour
 
             case EnemyData.EnemyBehaviour.Aura:
                 AuraBehaviour();
+                break;
+
+            case EnemyData.EnemyBehaviour.Boss:
+                BossBehaviour();
                 break;
         }
 
@@ -143,6 +150,16 @@ public class EnemyFSM : MonoBehaviour
         escapeState.onEnter += () => { animator.SetBool("Maintain", true); };
         escapeState.onEnter += () => { animator.SetBool("Attack", false); };
         escapeState.onExit += () => { animator.SetBool("Maintain", false); };
+    }
+
+    void BossBehaviour()
+    {
+        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, wizardState));
+        wizardState.transitions.Add(new Transition(wizardState.PlayerIsTooClose, attackState));
+        attackState.transitions.Add(new Transition(attackState.TargetOutOfRange, wizardState));
+        wizardState.transitions.Add(new Transition(wizardState.PlayerOutOfRange, chaseState));
+        chaseState.transitions.Add(new Transition(chaseState.TargetReached, wizardState));
+        chaseState.transitions.Add(new Transition(chaseState.TargetOutOfRange, idleState));
     }
 
     void OnPlayerDeath()

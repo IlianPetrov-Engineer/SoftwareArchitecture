@@ -17,10 +17,12 @@ public class EnemyWizardBahaviour : State
 
     private Animator animator;
 
+    private EnemyAttack enemyAttack;
+
     private float timer;
     private bool isAttacking;
 
-    public EnemyWizardBahaviour(Transform self, Transform target, float rotationSpeed, float detectionRange, float attackRange, float dangerRange, NavMeshAgent agent, float moveInterval, float moveDistance, EnemyAttackController attackController, float stopAttack, Animator animator)
+    public EnemyWizardBahaviour(Transform self, Transform target, float rotationSpeed, float detectionRange, float attackRange, float dangerRange, NavMeshAgent agent, float moveInterval, float moveDistance, EnemyAttackController attackController, float stopAttack, Animator animator, EnemyAttack enemyAttack)
     {
         this.self = self;
         this.target = target;
@@ -32,6 +34,7 @@ public class EnemyWizardBahaviour : State
         this.attackController = attackController;
         this.stopAttack = stopAttack;
         this.animator = animator;
+        this.enemyAttack = enemyAttack;
         
         randomMovement = new RandomMovement(self, agent, moveInterval, moveDistance);
 
@@ -80,7 +83,7 @@ public class EnemyWizardBahaviour : State
 
             else
             {
-                attackController.CanAttack(target);
+                attackController.CanAttack(target, enemyAttack);
 
                 if (timer >= stopAttack)
                 {

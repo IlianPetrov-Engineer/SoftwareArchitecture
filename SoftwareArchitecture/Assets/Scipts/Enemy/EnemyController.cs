@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using SA_Enemy;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /// <summary>
 /// Simple enemy controller that publish onEnemyCreated and onHit events when
@@ -13,8 +14,8 @@ public class EnemyController : MonoBehaviour
     private Enemy enemy;
     private EnemyNavMeshController navMeshController;
 
-    [SerializeField] EnemyAttack enemyAttack;
-    public EnemyAttack Attack => enemyAttack;
+    [SerializeField] List<EnemyAttack> enemyAttack = new List<EnemyAttack>();
+    public List<EnemyAttack> Attack => enemyAttack;
 
     public EnemyData EnemyData => enemyData;
 

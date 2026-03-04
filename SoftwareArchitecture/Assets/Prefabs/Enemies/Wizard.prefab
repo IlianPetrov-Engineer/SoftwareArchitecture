@@ -732,7 +732,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 3db2c318948e28c40930e29a3fbc7cfd, type: 2}
-  enemyAttack: {fileID: 11400000, guid: 9bc88d177baaaa44f8f1384be3bed2d1, type: 2}
+  enemyAttack:
+  - {fileID: 11400000, guid: 9bc88d177baaaa44f8f1384be3bed2d1, type: 2}
 --- !u!114 &2890541706708832053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +808,7 @@ MonoBehaviour:
   enemyBody: {fileID: 176394395825642064}
   animator: {fileID: 251778379071283623}
   enemyFSM: {fileID: 4057132876190839683}
-  colourConfigurator: {fileID: 0}
+  colourConfigurator: {fileID: 11400000, guid: 93f77a10c040eec40b0640b7a387f577, type: 2}
 --- !u!1 &2000792706473601179
 GameObject:
   m_ObjectHideFlags: 0

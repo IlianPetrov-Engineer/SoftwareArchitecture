@@ -7,13 +7,15 @@ public class EnemyAttackState : State
     private Transform target;
     private float attackRange;
     private EnemyAttackController attackController;
+    private EnemyAttack enemyAttack;
 
-    public EnemyAttackState(Transform self, Transform target, float attackrange, EnemyAttackController attackController)
+    public EnemyAttackState(Transform self, Transform target, float attackrange, EnemyAttackController attackController, EnemyAttack enemyAttack)
     {
         this.self = self;
         this.target = target;
         this.attackRange = attackrange;
         this.attackController = attackController;
+        this.enemyAttack = enemyAttack;
 
         stateName = "Attack";
     }
@@ -30,7 +32,7 @@ public class EnemyAttackState : State
 
         if (distance <= attackRange)
         {
-            attackController.CanAttack(target);
+            attackController.CanAttack(target, enemyAttack);
         }
     }
 

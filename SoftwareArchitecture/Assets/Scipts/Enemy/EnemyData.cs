@@ -19,7 +19,8 @@ namespace SA_Enemy
         {
             Melee,
             Range,
-            Aura
+            Aura,
+            Boss
         }
 
         public Enemy CreateEnemy()

@@ -7,10 +7,8 @@ public class EnemyAttackController : MonoBehaviour
     
     private Dictionary<EnemyAttack, float> lastCastTime = new Dictionary<EnemyAttack, float>();
 
-    public bool CanAttack(Transform target)
+    public bool CanAttack(Transform target, EnemyAttack attack)
     {
-        EnemyAttack attack = enemyController.Attack;
-
         if (attack == null)
             return false;
 

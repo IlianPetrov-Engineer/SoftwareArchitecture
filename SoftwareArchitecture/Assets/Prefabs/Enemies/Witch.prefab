@@ -533,7 +533,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 400f9d6760c9914418700970ddfbf984, type: 2}
-  enemyAttack: {fileID: 11400000, guid: c91522855ec9b6f47b25f5fc14da543f, type: 2}
+  enemyAttack:
+  - {fileID: 11400000, guid: c91522855ec9b6f47b25f5fc14da543f, type: 2}
 --- !u!114 &4990614164148904900
 MonoBehaviour:
   m_ObjectHideFlags: 0
