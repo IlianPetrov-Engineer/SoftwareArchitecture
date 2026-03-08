@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Melee
   m_EditorClassIdentifier: 
   cooldown: 1
-  range: 33
+  range: 2

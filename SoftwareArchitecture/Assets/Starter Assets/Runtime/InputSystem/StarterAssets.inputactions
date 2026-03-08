@@ -88,7 +88,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FrostAttack",
+                    "name": "SecondAttack",
                     "type": "Button",
                     "id": "16badcfc-8e29-45b3-9a2d-35f83c8613cd",
                     "expectedControlType": "",
@@ -97,7 +97,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GravityPushAttack",
+                    "name": "ThirdAttack",
                     "type": "Button",
                     "id": "e45935e3-3332-4be4-8cbe-6930d7a94bfe",
                     "expectedControlType": "",
@@ -307,17 +307,6 @@
                 },
                 {
                     "name": "",
-                    "id": "dda65155-b369-4dac-a8be-dd472d5338a0",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardMouse",
-                    "action": "PauseMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8a652512-98cd-4c64-b5fb-a3fc4ce2ca68",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -356,7 +345,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "FrostAttack",
+                    "action": "SecondAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -367,7 +356,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GravityPushAttack",
+                    "action": "ThirdAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

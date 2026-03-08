@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02f22ede7bb536c40907f78c83063aec, type: 3}
-  m_Name: Gravity Lv1
+  m_Name: Gravity Lv.3
   m_EditorClassIdentifier: 
-  abilityName: Gravity Lv.1
-  cooldown: 1
+  abilityName: Gravity Push Lv.3
+  cooldown: 5
   abilityType: 2
-  requiredTokens: 10
-  abilityDescription: 
+  requiredTokens: 3
+  abilityDescription: Increased radius, force and decreased cooldown.
   radius: 6
-  force: 10
+  force: 15
   damageData:
     damage: 0
     slowDown: 0

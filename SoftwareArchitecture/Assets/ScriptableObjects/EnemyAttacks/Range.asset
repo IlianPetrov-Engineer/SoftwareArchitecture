@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f16c94ea6c1f1438be2ed84a5aa960, type: 3}
   m_Name: Range
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 2
   projectilePrefab: {fileID: 9163377149794076429, guid: 305069bce1de0ee4bb9c3703c00a1888, type: 3}
-  speed: 2
-  lifeTime: 1
+  speed: 14
+  lifeTime: 4

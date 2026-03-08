@@ -26,7 +26,7 @@ public class EnemyAppearanceObserver : EnemyObserver
         enemyFSM.animationLock = true;
         animator.Play("Get Hit");
 
-        Color colour = GetColour(context.abilityType);
+        Color colour = GetColour(context.attackType);
 
         Color original = enemyBody.material.color;
         enemyBody.material.color = colour;
@@ -52,17 +52,17 @@ public class EnemyAppearanceObserver : EnemyObserver
         Destroy(gameObject);
     }
 
-    private Color GetColour(Ability.AbilityType abilityType)
+    private Color GetColour(Attacks.AttackType abilityType)
     {
         switch (abilityType)
         {
-            case Ability.AbilityType.Fireball:
+            case Attacks.AttackType.Fireball:
                 return colourConfigurator.fireballAttack;
 
-            case Ability.AbilityType.Freeze:
+            case Attacks.AttackType.Freeze:
                 return colourConfigurator.freezeAttack;
 
-            case Ability.AbilityType.GravityPush:
+            case Attacks.AttackType.GravityPush:
                 return colourConfigurator.gravityAttack;
 
             default:

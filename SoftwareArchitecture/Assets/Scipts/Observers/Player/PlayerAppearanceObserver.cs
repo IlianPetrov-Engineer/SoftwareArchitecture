@@ -25,11 +25,10 @@ public class PlayerAppearanceObserver : PlayerObserver
 
     private IEnumerator FlashRed()
     {
-        Color original = hitOverlay.color;
         hitOverlay.color = new Color32(255, 0, 0, 128);
 
         yield return new WaitForSeconds(0.5f);
 
-        hitOverlay.color = original;
+        hitOverlay.color = new Color32(255, 0, 0, 0);
     }
 }

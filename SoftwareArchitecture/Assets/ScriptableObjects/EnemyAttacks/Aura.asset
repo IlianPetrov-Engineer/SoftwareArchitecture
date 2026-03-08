@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101f3668681b9ae4095f06088f9dc183, type: 3}
   m_Name: Aura
   m_EditorClassIdentifier: 
-  cooldown: 1
-  radius: 10
-  tickRate: 2
+  cooldown: 0
+  radius: 7
+  tickRate: 1.5

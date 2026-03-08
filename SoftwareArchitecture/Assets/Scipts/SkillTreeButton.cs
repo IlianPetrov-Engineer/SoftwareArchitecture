@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class SkillTreeButton : MonoBehaviour
 {
-    [SerializeField] Ability abilityToGive;
+    [SerializeField] Attacks attackToGive;
     [SerializeField] PlayerAttacks playerAttacks;
     [SerializeField] Button button;
     [SerializeField] GameObject completionOverlay;
@@ -12,15 +12,15 @@ public class SkillTreeButton : MonoBehaviour
     {
         PlayerStats stats = PlayerStats.Instance;
 
-        if (stats.skillTokens < abilityToGive.requiredTokens)
+        if (stats.skillTokens < attackToGive.requiredTokens)
             return;
 
-        if (!playerAttacks.LearnedAbilitiy(abilityToGive.abilityType))
-            playerAttacks.UnlockAbility(abilityToGive);
+        if (!playerAttacks.LearnedAttack(attackToGive.attackType))
+            playerAttacks.UnlockAttack(attackToGive);
         else
-            playerAttacks.UpgradeAbility(abilityToGive);
+            playerAttacks.UpgradeAttack(attackToGive);
 
-        stats.skillTokens -= abilityToGive.requiredTokens;
+        stats.skillTokens -= attackToGive.requiredTokens;
 
         button.interactable = false;
         completionOverlay.SetActive(true);

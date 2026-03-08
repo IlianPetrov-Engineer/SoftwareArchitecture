@@ -1,12 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using SA_Enemy;
-using System.Collections.Generic;
 
-/// <summary>
-/// A very basic enemy spawner that just randomly picks a prefab in a wave
-/// and spawn it
-/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] float spawnInterval = 2f;

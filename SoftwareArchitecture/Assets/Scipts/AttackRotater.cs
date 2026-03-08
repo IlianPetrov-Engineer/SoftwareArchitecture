@@ -10,7 +10,7 @@ public class AttackRotater : MonoBehaviour
 
     void Update()
     {
-        Ability currentAttack = playerAttacks.GetSelectedAbility();
+        Attacks currentAttack = playerAttacks.GetSelectedAbility();
 
         targetAngle = GetTargetAngle(currentAttack);
 
@@ -20,7 +20,7 @@ public class AttackRotater : MonoBehaviour
 
     }
 
-    float GetTargetAngle(Ability currentAttack)
+    float GetTargetAngle(Attacks currentAttack)
     {
         if (currentAttack is FireballAttack fireball)
             return 0f;

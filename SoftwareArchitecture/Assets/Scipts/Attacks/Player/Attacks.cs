@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public abstract class Ability : ScriptableObject
+public abstract class Attacks : ScriptableObject
 {
     public string abilityName;
     public float cooldown;
 
-    public AbilityType abilityType;
+    public AttackType attackType;
     public int requiredTokens;
 
     [TextArea]
     public string abilityDescription;
 
-    public enum AbilityType
+    public enum AttackType
     {
         Fireball,
         Freeze,
@@ -19,14 +19,14 @@ public abstract class Ability : ScriptableObject
     }
     
 
-    public void Cast(AbilityData data)
+    public void Cast(AttackData data)
     {
-        ExecuteAbility(data);
+        ExecuteAttack(data);
     }
 
-    protected abstract void ExecuteAbility(AbilityData data);
+    protected abstract void ExecuteAttack(AttackData data);
 
-    public struct AbilityData
+    public struct AttackData
     {
         public Transform player;
         public Transform camera;

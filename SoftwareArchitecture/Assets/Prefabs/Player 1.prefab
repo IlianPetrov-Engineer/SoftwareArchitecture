@@ -171,7 +171,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5621144146957595481}
-  - component: {fileID: 6401129731333224299}
   m_Layer: 7
   m_Name: Player 1
   m_TagString: Player
@@ -198,27 +197,6 @@ Transform:
   - {fileID: 2844811126819649644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6401129731333224299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5356082675725627597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a249f29e6e5264685454b2db7e805f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStarts: {fileID: 8782791559078747281}
-  currentHP: {fileID: 0}
-  healthSlider: {fileID: 0}
-  currentLevel: {fileID: 0}
-  xpSlider: {fileID: 0}
-  currentXP: {fileID: 0}
-  xpPoints: {fileID: 0}
-  deathUI: {fileID: 0}
-  allUI: {fileID: 0}
 --- !u!1 &8708120637592059162
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +562,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1023383375875396835}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3760717283319673029}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1365865415710709113}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!4 &703811848802357208 stripped
 Transform:
@@ -637,8 +621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 11400000, guid: 9bd8f824d2a98ec4ab13f4128d99eae6, type: 2}
-  - {fileID: 11400000, guid: a71906847f70f7e408b33979a4a72831, type: 2}
-  - {fileID: 11400000, guid: 21679bf064afe8449b46c02c558b665c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   playerCamera: {fileID: 8187636348023175955}
   enemy:
     serializedVersion: 2
@@ -658,12 +642,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 50
+  currentHealth: 100
   currentLevel: 0
   currentXP: 0
   xpNeeded: 0
-  skillTokens: 10
-  xpLevelData: 0a000000140000001e00000028000000
+  skillTokens: 2
+  xpLevelData: 320000005a0000008c000000c8000000180100007c010000
 --- !u!114 &5591867590114719874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,6 +714,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStarts: {fileID: 8782791559078747281}
   spawners: []
+--- !u!114 &3760717283319673029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5130279542877238916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a249f29e6e5264685454b2db7e805f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStarts: {fileID: 8782791559078747281}
+  currentHP: {fileID: 0}
+  healthSlider: {fileID: 0}
+  currentLevel: {fileID: 0}
+  xpSlider: {fileID: 0}
+  currentXP: {fileID: 0}
+  xpPoints: {fileID: 0}
+  deathUI: {fileID: 0}
+  allUI: {fileID: 0}
+--- !u!114 &1365865415710709113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5130279542877238916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b8d76a9f9829a4fa07ba38c193023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5510640938048220222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}

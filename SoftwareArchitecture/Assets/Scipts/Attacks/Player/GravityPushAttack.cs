@@ -1,13 +1,13 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "PlayerAttacks/GravityPush")]
-public class GravityPushAttack : Ability
+public class GravityPushAttack : Attacks
 {
     public float radius;
     public float force;
     [SerializeField] DamageData damageData;
 
-    protected override void ExecuteAbility(AbilityData data)
+    protected override void ExecuteAttack(AttackData data)
     {
         Collider[] hits = Physics.OverlapSphere(data.player.position, radius, data.enemy);
 
@@ -17,7 +17,7 @@ public class GravityPushAttack : Ability
 
             if (enemy != null)
             {
-                var context = new DamageContext(damageData, abilityType, data.player);
+                var context = new DamageContext(damageData, attackType, data.player);
                 enemy.GetHit(context);
 
                 Vector3 direction = (hit.transform.position - data.player.transform.position).normalized;

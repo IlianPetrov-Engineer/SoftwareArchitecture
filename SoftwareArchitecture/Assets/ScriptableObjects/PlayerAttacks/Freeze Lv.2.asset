@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d22b22cfb6d568478235fbbe2ac7b38, type: 3}
   m_Name: Freeze Lv.2
   m_EditorClassIdentifier: 
-  abilityName: Freze Lv.1
-  cooldown: 1
+  abilityName: Freeze Lv.2
+  cooldown: 5
   abilityType: 1
-  requiredTokens: 3
-  range: 4
-  angle: 90
+  requiredTokens: 2
+  abilityDescription: Increased range, angle, slow down percentage, duration and
+    cooldown.
+  range: 7
+  angle: 95
   damageData:
     damage: 0
-    slowDown: 2
-    slowDownTime: 2
+    slowDown: 0.5
+    duration: 3.5

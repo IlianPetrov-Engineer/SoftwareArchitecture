@@ -6,14 +6,13 @@ public class PlayerUIObserver : PlayerObserver
 {
     [SerializeField] TextMeshProUGUI currentHP;
     [SerializeField] Slider healthSlider; 
-    [SerializeField] TextMeshProUGUI currentLevel;
-    [SerializeField] Slider xpSlider;
     [SerializeField] TextMeshProUGUI currentXP;
+    [SerializeField] Slider xpSlider;
+    [SerializeField] TextMeshProUGUI currentLevel;
     [SerializeField] TextMeshProUGUI xpPoints;
 
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject allUI;
-
 
     protected override void OnPlayerAwake()
     {
@@ -53,5 +52,10 @@ public class PlayerUIObserver : PlayerObserver
     {
         deathUI.SetActive(true);
         allUI.SetActive(false);
+    }
+
+    private void Update()
+    {
+        xpPoints.text = $"{"Skill Points: " + playerStarts.skillTokens}";
     }
 }

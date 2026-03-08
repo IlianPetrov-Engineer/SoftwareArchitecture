@@ -1,15 +1,15 @@
 using UnityEngine;
-using static Ability;
+using static Attacks;
 
 [CreateAssetMenu(menuName = "PlayerAttacks/Fireball")]
-public class FireballAttack : Ability
+public class FireballAttack : Attacks
 {
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float speed;
     public DamageData damageData;
     [SerializeField] float lifeTime;
 
-    protected override void ExecuteAbility(AbilityData data)
+    protected override void ExecuteAttack(AttackData data)
     {
         float offset = 2;
 
@@ -19,7 +19,7 @@ public class FireballAttack : Ability
         GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.LookRotation(direction));
         projectile.GetComponent<Rigidbody>().linearVelocity = direction * speed;
 
-        var context = new DamageContext(damageData, abilityType, data.player);
+        var context = new DamageContext(damageData, attackType, data.player);
         ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
         projectileController.Initialise(context, lifeTime);
     }

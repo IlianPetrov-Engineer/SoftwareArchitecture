@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 1149805998653216287}
   - component: {fileID: 3581590483135565416}
   m_Layer: 5
-  m_Name: Skill (1)
+  m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,10 +222,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf2ce1f9e0adef4baed9a348be12a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityToGive: {fileID: 11400000, guid: 9bd8f824d2a98ec4ab13f4128d99eae6, type: 2}
+  abilityToGive: {fileID: 0}
   playerAttacks: {fileID: 0}
   button: {fileID: 2421268896289161981}
-  completionOverlay: {fileID: 0}
+  completionOverlay: {fileID: 511484145103052525}
 --- !u!114 &1149805998653216287
 MonoBehaviour:
   m_ObjectHideFlags: 0

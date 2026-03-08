@@ -703,16 +703,16 @@ MonoBehaviour:
   target: {fileID: 0}
   enemyData: {fileID: 11400000, guid: 3db2c318948e28c40930e29a3fbc7cfd, type: 2}
   detectionRange: 15
-  rotateSpeed: 90
+  rotateSpeed: 180
   idleTime: 5
   moveDistance: 0.2
   currentState:
     rid: -2
   playerIsDead: 0
   enemyAttackController: {fileID: 2890541706708832053}
-  attackRange: 10
-  safeDistance: 7
-  minDistance: 2
+  attackRange: 15
+  safeDistance: 6
+  minDistance: 4
   maxDistance: 0
   references:
     version: 2
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - {fileID: 2548421307829038991, guid: a976c1b6e1a7097458bb2765bcb0ab4d, type: 3}
+  - {fileID: 561623677705676682, guid: d3d94d1ac1aa49540a182425174bb547, type: 3}
 --- !u!114 &5962117548586721879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,7 +1657,7 @@ RectTransform:
   m_Father: {fileID: 6869256221443227767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

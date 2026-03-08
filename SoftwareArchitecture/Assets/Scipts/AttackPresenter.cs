@@ -10,7 +10,7 @@ public class AttackPresenter : MonoBehaviour
 
     private void Update()
     {
-        Ability currentAttack = playerAttacks.GetSelectedAbility();
+        Attacks currentAttack = playerAttacks.GetSelectedAbility();
 
         if (currentAttack == null)
         {

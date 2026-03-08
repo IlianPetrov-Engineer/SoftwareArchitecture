@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 819772426ce5a7e4b8e40b65d333c18c, type: 3}
-  m_Name: Fireball Lv2.
+  m_Name: Fireball Lv.3
   m_EditorClassIdentifier: 
-  abilityName: Fireball Lv.1
-  cooldown: 1
+  abilityName: Fireball Lv.3
+  cooldown: 0.8
   abilityType: 0
-  requiredTokens: 2
-  abilityDescription: 'Fireball level 2 test '
-  projectilePrefab: {fileID: 5264134200685266771, guid: 8396f6a56c4968b4ea6357041fcd0442, type: 3}
-  speed: 5
+  requiredTokens: 4
+  abilityDescription: Increased damage, travel speed and decreased cooldown.
+  projectilePrefab: {fileID: 3272635989080325975, guid: 95498a37f229d174bb9e56b3484f57ec, type: 3}
+  speed: 20
   damageData:
-    damage: 110
+    damage: 30
     slowDown: 0
-    slowDownTime: 0
-  lifeTime: 2
+    duration: 0.2
+  lifeTime: 6

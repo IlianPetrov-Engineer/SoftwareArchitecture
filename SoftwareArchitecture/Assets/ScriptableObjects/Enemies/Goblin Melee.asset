@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d62d172a0879722499185f4ca2a2cdb3, type: 3}
-  m_Name: Test Melee
+  m_Name: Goblin Melee
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  attackDamage: 10
+  maxHealth: 30
+  attackDamage: 8
   passiveDamage: 0
-  speed: 5
+  speed: 3.5
   xp: 10
   enemyBehaviour: 0

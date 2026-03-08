@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
-    [SerializeField] Ability[] abilities;
+    [SerializeField] Attacks[] attacks;
     [SerializeField] Transform playerCamera;
     [SerializeField] LayerMask enemy;
 
@@ -11,53 +11,53 @@ public class PlayerAttacks : MonoBehaviour
 
     public bool canAttack = true;
 
-    Dictionary<Ability.AbilityType, Ability> unlockedAbilities = new Dictionary<Ability.AbilityType, Ability>();
+    Dictionary<Attacks.AttackType, Attacks> unlockedAttacks = new Dictionary<Attacks.AttackType, Attacks>();
 
-    Dictionary<Ability, float> lastCastTimes = new Dictionary<Ability, float>();
+    Dictionary<Attacks, float> lastCastTimes = new Dictionary<Attacks, float>();
 
     private void Start()
     {
-        if (abilities[0] != null)
+        if (attacks[0] != null)
         {
-            unlockedAbilities[abilities[0].abilityType] = abilities[0];
+            unlockedAttacks[attacks[0].attackType] = attacks[0];
         }
     }
 
-    public bool LearnedAbilitiy(Ability.AbilityType type)
+    public bool LearnedAttack(Attacks.AttackType type)
     {
-        return unlockedAbilities.ContainsKey(type);
+        return unlockedAttacks.ContainsKey(type);
     }
 
-    public void UnlockAbility(Ability unlockAbility)
+    public void UnlockAttack(Attacks unlockAbility)
     {
-        if (LearnedAbilitiy(unlockAbility.abilityType))
+        if (LearnedAttack(unlockAbility.attackType))
             return;
 
-        unlockedAbilities[unlockAbility.abilityType] = unlockAbility;
+        unlockedAttacks[unlockAbility.attackType] = unlockAbility;
 
-        for (int i = 0; i < abilities.Length; i++)
+        for (int i = 0; i < attacks.Length; i++)
         {
-            if (abilities[i] == null)
+            if (attacks[i] == null)
             {
-                abilities[i] = unlockAbility;
+                attacks[i] = unlockAbility;
                 return;
             }
         }
     }
 
-    public void UpgradeAbility(Ability newLevelAbility)
+    public void UpgradeAttack(Attacks newLevelAbility)
     {
-        if (!LearnedAbilitiy(newLevelAbility.abilityType))
+        if (!LearnedAttack(newLevelAbility.attackType))
             return;
 
-        Ability previousAbility = unlockedAbilities[newLevelAbility.abilityType];
+        Attacks previousAbility = unlockedAttacks[newLevelAbility.attackType];
 
-        for (int i = 0; i < abilities.Length; i++)
+        for (int i = 0; i < attacks.Length; i++)
         {
-            if (abilities[i] == previousAbility)
+            if (attacks[i] == previousAbility)
             {
-                abilities[i] = newLevelAbility;
-                unlockedAbilities[newLevelAbility.abilityType] = newLevelAbility;
+                attacks[i] = newLevelAbility;
+                unlockedAttacks[newLevelAbility.attackType] = newLevelAbility;
                 return;
             }
         }
@@ -68,10 +68,10 @@ public class PlayerAttacks : MonoBehaviour
         if (!canAttack)
             return;
 
-        if (selectedAttack >= abilities.Length)
+        if (selectedAttack >= attacks.Length)
             return;
 
-        Ability ability = abilities[selectedAttack];
+        Attacks ability = attacks[selectedAttack];
         if (ability == null)
             return;
 
@@ -81,7 +81,7 @@ public class PlayerAttacks : MonoBehaviour
                 return;
         }
 
-        Ability.AbilityData data = new Ability.AbilityData
+        Attacks.AttackData data = new Attacks.AttackData
         {
             player = transform,
             camera = playerCamera,
@@ -97,21 +97,23 @@ public class PlayerAttacks : MonoBehaviour
         selectedAttack = 0;
     }
 
-    void OnFrostAttack()
+    void OnSecondAttack()
     {
+        if (attacks[1] != null)
         selectedAttack = 1;
     }
 
-    void OnGravityPushAttack()
+    void OnThirdAttack()
     {
-        selectedAttack = 2;
+        if (attacks[2] != null)
+            selectedAttack = 2;
     }
 
-    public Ability GetSelectedAbility()
+    public Attacks GetSelectedAbility()
     {
-        if (selectedAttack >= abilities.Length)
+        if (selectedAttack >= attacks.Length)
             return null;
 
-        return abilities[selectedAttack];
+        return attacks[selectedAttack];
     }
 }

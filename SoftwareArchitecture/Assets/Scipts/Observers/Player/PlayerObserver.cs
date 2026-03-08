@@ -1,4 +1,3 @@
-using SA_Enemy;
 using UnityEngine;
 
 public abstract class PlayerObserver : MonoBehaviour

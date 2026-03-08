@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 819772426ce5a7e4b8e40b65d333c18c, type: 3}
-  m_Name: Fireball Lv1.
+  m_Name: Fireball Lv.1
   m_EditorClassIdentifier: 
   abilityName: Fireball Lv.1
-  cooldown: 1
+  cooldown: 1.2
   abilityType: 0
   requiredTokens: 0
-  abilityDescription: 'Fireball level 1 test '
+  abilityDescription: Cast a blazzing ball of fire that deals damage upon impact.
   projectilePrefab: {fileID: 3272635989080325975, guid: 95498a37f229d174bb9e56b3484f57ec, type: 3}
-  speed: 5
+  speed: 16
   damageData:
-    damage: 100
+    damage: 15
     slowDown: 0
     duration: 0.2
-  lifeTime: 2
+  lifeTime: 4

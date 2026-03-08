@@ -1,16 +1,16 @@
 using UnityEngine;
-using static Ability;
+using static Attacks;
 
 public struct DamageContext
 {
     public DamageData damageData;
-    public AbilityType abilityType;
+    public AttackType attackType;
     public Transform target;
 
-    public DamageContext(DamageData damageData, AbilityType abilityType, Transform target)
+    public DamageContext(DamageData damageData, AttackType attackType, Transform target)
     {
         this.damageData = damageData;
-        this.abilityType = abilityType;
+        this.attackType = attackType;
         this.target = target;
     }
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d62d172a0879722499185f4ca2a2cdb3, type: 3}
-  m_Name: Test Aura
+  m_Name: Witch Aura
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 55
   attackDamage: 0
-  passiveDamage: 3
-  speed: 5
-  xp: 20
+  passiveDamage: 5
+  speed: 3
+  xp: 18
   enemyBehaviour: 2

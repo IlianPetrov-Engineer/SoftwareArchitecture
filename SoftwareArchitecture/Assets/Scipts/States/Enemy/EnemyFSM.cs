@@ -41,7 +41,7 @@ public class EnemyFSM : MonoBehaviour
     private EnemyAttackState attackState;
     private EnemyEscape escapeState;
     private EnemyMaintainDistance maintainDistanceState;
-    private EnemyWizardBahaviour wizardState;
+    private EnemyRangeBahaviour rangeState;
 
     private void OnEnable()
     {
@@ -68,7 +68,7 @@ public class EnemyFSM : MonoBehaviour
         attackState = new EnemyAttackState(transform, target.transform, attackRange, enemyAttackController, mainAttack);
         escapeState = new EnemyEscape(transform, target.transform, rotateSpeed, agent, safeDistance);
         maintainDistanceState = new EnemyMaintainDistance(transform, target.transform, detectionRange, rotateSpeed, agent, minDistance, maxDistance, animator, enemyAttackController, mainAttack);
-        wizardState = new EnemyWizardBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator, secondaryAttack);
+        rangeState = new EnemyRangeBahaviour(transform, target.transform, rotateSpeed, detectionRange, attackRange, minDistance, agent, idleTime, moveDistance, enemyAttackController, idleTime, animator, secondaryAttack);
 
         switch (enemyData.enemyBehaviour)
         {
@@ -127,14 +127,14 @@ public class EnemyFSM : MonoBehaviour
 
     void RangeBehaviour()
     {
-        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, wizardState));
-        wizardState.transitions.Add(new Transition(wizardState.PlayerIsTooClose, escapeState));
-        wizardState.transitions.Add(new Transition(wizardState.PlayerOutOfRange, idleState));
-        escapeState.transitions.Add(new Transition(escapeState.SafeDistanceReached, wizardState));
+        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, rangeState));
+        rangeState.transitions.Add(new Transition(rangeState.PlayerIsTooClose, escapeState));
+        rangeState.transitions.Add(new Transition(rangeState.PlayerOutOfRange, idleState));
+        escapeState.transitions.Add(new Transition(escapeState.SafeDistanceReached, rangeState));
 
         idleState.onExit += () => { animator.SetBool("Walk", false); };
-        wizardState.onEnter += () => { animator.SetBool("Walk", true); };
-        wizardState.onExit += () => { animator.SetBool("Attack", false); };
+        rangeState.onEnter += () => { animator.SetBool("Walk", true); };
+        rangeState.onExit += () => { animator.SetBool("Cast", false); };
         escapeState.onEnter += () => { animator.SetBool("Walk", true); };
         escapeState.onExit += () => { animator.SetBool("Walk", false); };
     }
@@ -154,12 +154,20 @@ public class EnemyFSM : MonoBehaviour
 
     void BossBehaviour()
     {
-        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, wizardState));
-        wizardState.transitions.Add(new Transition(wizardState.PlayerIsTooClose, attackState));
-        attackState.transitions.Add(new Transition(attackState.TargetOutOfRange, wizardState));
-        wizardState.transitions.Add(new Transition(wizardState.PlayerOutOfRange, chaseState));
-        chaseState.transitions.Add(new Transition(chaseState.TargetReached, wizardState));
+        idleState.transitions.Add(new Transition(idleState.IsTargetInRange, rangeState));
+        rangeState.transitions.Add(new Transition(rangeState.PlayerIsTooClose, attackState));
+        attackState.transitions.Add(new Transition(() => Vector3.Distance(transform.position, target.transform.position) > minDistance, rangeState));
+        rangeState.transitions.Add(new Transition(rangeState.PlayerOutOfRange, chaseState));
+        chaseState.transitions.Add(new Transition(chaseState.TargetReached, rangeState));
         chaseState.transitions.Add(new Transition(chaseState.TargetOutOfRange, idleState));
+
+        idleState.onExit += () => { animator.SetBool("Walk", false); };
+        rangeState.onEnter += () => { animator.SetBool("Walk", true); };
+        rangeState.onExit += () => { animator.SetBool("Cast", false); };
+        attackState.onEnter += () => { animator.SetBool("Attack", true); };
+        attackState.onExit += () => { animator.SetBool("Attack", false); };
+        chaseState.onEnter += () => { animator.SetBool("Chase", true); };
+        chaseState.onExit += () => { animator.SetBool("Chase", false); };
     }
 
     void OnPlayerDeath()

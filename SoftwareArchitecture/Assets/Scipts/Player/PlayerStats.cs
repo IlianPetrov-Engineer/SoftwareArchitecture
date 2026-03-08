@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using SA_Enemy;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -25,11 +24,11 @@ public class PlayerStats : MonoBehaviour
     public event Action onHealthChanged;
     public event Action onPlayerDeath;
 
-    private void Awake()
+    private void Start()
     {
         xpNeeded = xpLevelData[currentLevel];
-        Instance = this;
         onPlayerAwake?.Invoke();
+        Instance = this;
     }
 
     public void AddXP(int amount)
@@ -49,7 +48,7 @@ public class PlayerStats : MonoBehaviour
         onXPChanged?.Invoke();
     }
 
-    void LevelUp()
+    private void LevelUp()
     {
         currentXP = 0;
         currentLevel++;

@@ -2,13 +2,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "PlayerAttacks/Freeze")]
-public class FreezeAttack : Ability
+public class FreezeAttack : Attacks
 {
     public float range;
     public float angle;
     public DamageData damageData;
 
-    protected override void ExecuteAbility(AbilityData data)
+    protected override void ExecuteAttack(AttackData data)
     {
         Collider[] hits = Physics.OverlapSphere(data.player.position, range, data.enemy);
 
@@ -29,7 +29,7 @@ public class FreezeAttack : Ability
             EnemyController enemy = hit.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                var context = new DamageContext(damageData, abilityType, data.player);
+                var context = new DamageContext(damageData, attackType, data.player);
 
                 enemy.GetHit(context);
 

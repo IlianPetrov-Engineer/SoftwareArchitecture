@@ -3,7 +3,7 @@ using SA_Inventory;
 
 public class ItemReceiver : MonoBehaviour
 {
-    public void Open()
+    public void Collect()
     {
         ItemCreation itemContainer = GetComponent<ItemCreation>();
         if (itemContainer != null)
@@ -16,7 +16,7 @@ public class ItemReceiver : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Open();
+            Collect();
 
             GameObject.Destroy(gameObject);
         }

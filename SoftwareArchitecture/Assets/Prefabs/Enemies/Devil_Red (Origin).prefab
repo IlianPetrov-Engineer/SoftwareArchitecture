@@ -3168,7 +3168,7 @@ RectTransform:
   m_Father: {fileID: 3276693617047271230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4974,6 +4974,8 @@ GameObject:
   - component: {fileID: 452502681714862786}
   - component: {fileID: 7248550530878531059}
   - component: {fileID: 1396289446347208142}
+  - component: {fileID: 4881558226799479065}
+  - component: {fileID: 2539123766387767121}
   m_Layer: 6
   m_Name: Devil_Red (Origin)
   m_TagString: Untagged
@@ -5124,17 +5126,17 @@ MonoBehaviour:
   animationLock: 0
   target: {fileID: 0}
   enemyData: {fileID: 11400000, guid: 641b37bbcd54c8e4099860e608b3d4a9, type: 2}
-  detectionRange: 15
-  rotateSpeed: 90
-  idleTime: 2
-  moveDistance: 2
+  detectionRange: 25
+  rotateSpeed: 360
+  idleTime: 3
+  moveDistance: 0.2
   currentState:
     rid: -2
   playerIsDead: 0
   enemyAttackController: {fileID: 452502681714862786}
-  attackRange: 3
-  safeDistance: 5
-  minDistance: 1
+  attackRange: 25
+  safeDistance: 15
+  minDistance: 10
   maxDistance: 0
   references:
     version: 2
@@ -5155,7 +5157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 641b37bbcd54c8e4099860e608b3d4a9, type: 2}
   enemyAttack:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 9b462b5654218a54a907ba1ea704e6f0, type: 2}
+  - {fileID: 11400000, guid: f7246a4fc253f8d4eb679065df69ab60, type: 2}
 --- !u!114 &452502681714862786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5201,6 +5204,36 @@ MonoBehaviour:
   animator: {fileID: 320918576433568038}
   enemyFSM: {fileID: 1137507620806251010}
   colourConfigurator: {fileID: 11400000, guid: 93f77a10c040eec40b0640b7a387f577, type: 2}
+--- !u!114 &4881558226799479065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307774115967480653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a8431814acdbd41a26f771c497fddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - {fileID: 6896299582623529659, guid: e9acc3985adf43b40b20e86a70d1f240, type: 3}
+--- !u!114 &2539123766387767121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3307774115967480653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70cd0bcb081043f45ad836d7ada5f11a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyController: {fileID: 7734248046092984812}
+  xpPrefab: {fileID: 5428788902683537196, guid: 35c81450ea5735642a08f51ceed96bf4, type: 3}
+  enemyData: {fileID: 11400000, guid: 641b37bbcd54c8e4099860e608b3d4a9, type: 2}
+  dropableItems: {fileID: 4881558226799479065}
 --- !u!1 &3395837433526632800
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
-using SA_Inventory;
 using StarterAssets;
 
 public class PlayerExtras : MonoBehaviour
@@ -21,8 +20,6 @@ public class PlayerExtras : MonoBehaviour
 
     private StarterAssetsInputs assetsInputs;
     private FirstPersonController firstPersonController;
-
-    public Quest quest;
 
     private PlayerAttacks playerAttacks;
 
@@ -88,7 +85,7 @@ public class PlayerExtras : MonoBehaviour
         );
     }
 
-     void OnPauseMenu()
+    void OnPauseMenu()
     {
         ToggleUI(ref pauseMenuIsShown, pauseMenu, onActivate: () =>
         {

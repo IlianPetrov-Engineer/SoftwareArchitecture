@@ -1,4 +1,3 @@
-using SA_Enemy;
 using SA_Inventory;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,8 @@ public class QuestManager : MonoBehaviour
     public event Action<Quest> onQuestProgressChanged;
 
     private int currentQuestIndex = 0;
+
+    [SerializeField] PlayerStats playerStats;
 
     private void OnEnable()
     {
@@ -79,10 +80,9 @@ public class QuestManager : MonoBehaviour
         onQuestActivated?.Invoke(CurrentQuest);
     }
 
-    private void CompleteCurrentQuest()
+    public void CompleteCurrentQuest()
     {
-        // reward
-        // playerStats.AddXP(CurrentQuest.expReward);
+        playerStats.AddXP(CurrentQuest.xpReward);
 
         onQuestCompleted?.Invoke(CurrentQuest);
 

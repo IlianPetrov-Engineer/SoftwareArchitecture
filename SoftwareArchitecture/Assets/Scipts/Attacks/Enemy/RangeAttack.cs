@@ -12,6 +12,9 @@ public class RangeAttack : EnemyAttack
     {
         float offset = 2;
 
+        if (enemyController.EnemyData.enemyBehaviour == EnemyData.EnemyBehaviour.Boss)
+            offset = 3.5f;
+
         Vector3 direction = enemyController.transform.forward;
         Vector3 spawnPos = new Vector3(enemyController.transform.position.x, enemyController.transform.position.y + offset / 2, enemyController.transform.position.z) + direction * offset;
 

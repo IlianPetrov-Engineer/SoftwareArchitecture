@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819772426ce5a7e4b8e40b65d333c18c, type: 3}
+  m_Name: Fireball Lv.2
+  m_EditorClassIdentifier: 
+  abilityName: Fireball Lv.2
+  cooldown: 1
+  abilityType: 0
+  requiredTokens: 2
+  abilityDescription: Increased damage, travel speed and decreased cooldown.
+  projectilePrefab: {fileID: 3272635989080325975, guid: 95498a37f229d174bb9e56b3484f57ec, type: 3}
+  speed: 18
+  damageData:
+    damage: 22
+    slowDown: 0
+    duration: 0.2
+  lifeTime: 5

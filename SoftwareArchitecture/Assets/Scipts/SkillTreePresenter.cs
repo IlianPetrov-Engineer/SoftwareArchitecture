@@ -1,13 +1,12 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class SkillTreePresenter : AbilityPresenter
+public class SkillTreePresenter : AttacksPresenter
 {
-    [SerializeField] Ability refAbility;
+    [SerializeField] Attacks refAbility;
 
-    public override void Presenter(Ability ability)
+    public override void Presenter(Attacks attacks)
     {
-        refAbility = ability;
+        refAbility = attacks;
     }
 
     private void Start()
@@ -20,12 +19,12 @@ public class SkillTreePresenter : AbilityPresenter
         if (refAbility == null)
             return;
 
-        AbilityInfoDisplay.abilityInfo = Description();
+        AttackInfoDisplay.attackInfo = Description();
     }
 
     public void ClearInfo()
     {
-        AbilityInfoDisplay.abilityInfo = "";
+        AttackInfoDisplay.attackInfo = "";
     }
 
     public string Description()
@@ -49,6 +48,8 @@ public class SkillTreePresenter : AbilityPresenter
         {
             text += "Push Force: " + gravity.force;
         }
+
+        text += "\n" + "Required tokens: " + refAbility.requiredTokens;
 
         return text;
     }

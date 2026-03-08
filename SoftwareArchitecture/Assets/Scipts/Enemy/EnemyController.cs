@@ -1,13 +1,8 @@
 using UnityEngine;
 using System;
 using SA_Enemy;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
-/// <summary>
-/// Simple enemy controller that publish onEnemyCreated and onHit events when
-/// it's created and hit.
-/// </summary>
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyData enemyData;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyWizardBahaviour : State
+public class EnemyRangeBahaviour : State
 {
     private Transform self;
     private Transform target;
@@ -22,7 +22,7 @@ public class EnemyWizardBahaviour : State
     private float timer;
     private bool isAttacking;
 
-    public EnemyWizardBahaviour(Transform self, Transform target, float rotationSpeed, float detectionRange, float attackRange, float dangerRange, NavMeshAgent agent, float moveInterval, float moveDistance, EnemyAttackController attackController, float stopAttack, Animator animator, EnemyAttack enemyAttack)
+    public EnemyRangeBahaviour(Transform self, Transform target, float rotationSpeed, float detectionRange, float attackRange, float dangerRange, NavMeshAgent agent, float moveInterval, float moveDistance, EnemyAttackController attackController, float stopAttack, Animator animator, EnemyAttack enemyAttack)
     {
         this.self = self;
         this.target = target;
@@ -38,7 +38,7 @@ public class EnemyWizardBahaviour : State
         
         randomMovement = new RandomMovement(self, agent, moveInterval, moveDistance);
 
-        stateName = "RapidMovement";
+        stateName = "Range";
     }
 
     public override void Enter()
@@ -76,7 +76,7 @@ public class EnemyWizardBahaviour : State
                 {
                     isAttacking = true;
                     timer = 0;
-                    animator.SetBool("Attack", true);
+                    animator.SetBool("Cast", true);
                     animator.SetBool("Walk", false);
                 }
             }
@@ -89,7 +89,7 @@ public class EnemyWizardBahaviour : State
                 {
                     isAttacking = false;
                     timer = 0;
-                    animator.SetBool("Attack", false);
+                    animator.SetBool("Cast", false);
                     animator.SetBool("Walk", true);
                 }
             }
@@ -99,7 +99,7 @@ public class EnemyWizardBahaviour : State
         {
             isAttacking = false;
             timer = 0;
-            animator.SetBool("Attack", false);
+            animator.SetBool("Cast", false);
         }
     }
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62d172a0879722499185f4ca2a2cdb3, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  maxHealth: 333
-  attackDamage: 22
+  maxHealth: 400
+  attackDamage: 15
   passiveDamage: 0
-  speed: 10
-  xp: 0
+  speed: 3.2
+  xp: 150
   enemyBehaviour: 3
