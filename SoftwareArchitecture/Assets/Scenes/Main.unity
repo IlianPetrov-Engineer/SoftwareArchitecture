@@ -1152,6 +1152,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3651064935179420669, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
   m_PrefabInstance: {fileID: 1357591543506480836}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &49352587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4303194169967381211, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+  m_PrefabInstance: {fileID: 1357591543506480836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &62822587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2383,7 +2394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16028,7 +16039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18107,7 +18118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20760,7 +20771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22772,7 +22783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24410,7 +24421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29848,7 +29859,7 @@ MonoBehaviour:
   quests:
   - title: Killer
     description: Eliminate 12 goblins
-    expReward: 120
+    xpReward: 120
     goal:
       requiredAmount: 12
       currentAmount: 0
@@ -29857,7 +29868,7 @@ MonoBehaviour:
       goalType: 0
   - title: Ultimate Wizard
     description: Find and collect the wizard's staff
-    expReward: 100
+    xpReward: 100
     goal:
       requiredAmount: 1
       currentAmount: 0
@@ -29866,13 +29877,14 @@ MonoBehaviour:
       goalType: 1
   - title: Boss Battle
     description: Find the boss arena and eliminate the final thread
-    expReward: 300
+    xpReward: 300
     goal:
       requiredAmount: 1
       currentAmount: 0
       itemData: {fileID: 0}
       enemyData: {fileID: 11400000, guid: 641b37bbcd54c8e4099860e608b3d4a9, type: 2}
       goalType: 0
+  currentQuestIndex: 0
   playerStats: {fileID: 2097332337178511048}
 --- !u!4 &2112050492
 Transform:
@@ -30819,13 +30831,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1358057677920455425, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: a71906847f70f7e408b33979a4a72831, type: 2}
+    - target: {fileID: 1358057677920455425, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
       objectReference: {fileID: 2097332337178511027}
     - target: {fileID: 1413433034281407731, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: ee0bd0aaa72f40f4788d5556ffeac0cc, type: 2}
+    - target: {fileID: 1413433034281407731, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
       objectReference: {fileID: 2097332337178511027}
+    - target: {fileID: 1746810690698540364, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 50edd39ba5af48642a6ba116ecb6f57c, type: 2}
     - target: {fileID: 1746810690698540364, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
@@ -30910,18 +30934,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3307601310585663454, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackInfoText
+      value: 
+      objectReference: {fileID: 49352587}
     - target: {fileID: 3814806278481316595, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
       objectReference: {fileID: 2097332337178511027}
     - target: {fileID: 6069131000441932307, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 10038886d7e806847b279c8ee75fd0be, type: 2}
+    - target: {fileID: 6069131000441932307, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
       objectReference: {fileID: 2097332337178511027}
     - target: {fileID: 6486097451899788613, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f114c4eda8a65348a12c57dfd4950e8, type: 2}
+    - target: {fileID: 6486097451899788613, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
       objectReference: {fileID: 2097332337178511027}
+    - target: {fileID: 6570832251824531969, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 45cbdd62726f294459ced51bce1164bf, type: 2}
     - target: {fileID: 6570832251824531969, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
@@ -30930,6 +30970,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2097332337178511042}
+    - target: {fileID: 7312427851181445739, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 21679bf064afe8449b46c02c558b665c, type: 2}
     - target: {fileID: 7312427851181445739, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
@@ -30946,6 +30990,10 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1844375364}
+    - target: {fileID: 8730253462361544166, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
+      propertyPath: attackToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 2afaa172c9f5a3f449f86aecb2a2a40c, type: 2}
     - target: {fileID: 8730253462361544166, guid: 2faaa66e78ab03d4190b067a62a26d39, type: 3}
       propertyPath: playerAttacks
       value: 
@@ -31013,7 +31061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1201833402357560359, guid: 1b48bac17910460498c89f7e9c2b43c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31266,6 +31314,22 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 2041703658}
+    - target: {fileID: 3798888416131239174, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: attacks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798888416131239174, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: 'attacks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bd8f824d2a98ec4ab13f4128d99eae6, type: 2}
+    - target: {fileID: 3798888416131239174, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: 'attacks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798888416131239174, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: 'attacks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4913327377509438562, guid: 428e9b83f54c83147b553f844807c996, type: 3}
       propertyPath: stats
       value: 

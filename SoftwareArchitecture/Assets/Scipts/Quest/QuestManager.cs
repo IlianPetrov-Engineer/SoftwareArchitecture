@@ -11,7 +11,7 @@ public class QuestManager : MonoBehaviour
     public event Action<Quest> onQuestCompleted;
     public event Action<Quest> onQuestProgressChanged;
 
-    private int currentQuestIndex = 0;
+    public int currentQuestIndex = 0;
 
     [SerializeField] PlayerStats playerStats;
 

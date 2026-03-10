@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Freeze Lv.2
   cooldown: 5
-  abilityType: 1
+  attackType: 1
   requiredTokens: 2
   abilityDescription: Increased range, angle, slow down percentage, duration and
     cooldown.

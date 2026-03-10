@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Gravity Push Lv.2
   cooldown: 6
-  abilityType: 2
+  attackType: 2
   requiredTokens: 2
   abilityDescription: Increased radius, force and decreased cooldown.
   radius: 5

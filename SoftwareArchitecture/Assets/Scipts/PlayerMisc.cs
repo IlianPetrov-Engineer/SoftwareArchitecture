@@ -16,16 +16,25 @@ public class PlayerMisc : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (questManager.CurrentQuest.title == "Boss Battle")
+        if (/*questManager.CurrentQuest.title == "Boss Battle" && */questManager.currentQuestIndex == 2)
         {
-            wallBeforeBoss.SetActive(false);
-            enemyBoss.SetActive(true);
+            if (questManager.CurrentQuest.goal.currentAmount == 1)
+                return;
+
+            else if (questManager.CurrentQuest.goal.currentAmount == 0)
+            {
+                if (enemyBoss == null)
+                    return;
+
+                wallBeforeBoss.SetActive(false);
+                enemyBoss.SetActive(true);
+
+                if (wizardStaff != null)
+                    return;
+            }
         }
 
-        if (wizardStaff != null)
-            return;
-
-        if (questManager.CurrentQuest.title == "Ultimate Wizard")
+        if (questManager.currentQuestIndex == 1)
             wizardStaff.SetActive(true);
     }
 

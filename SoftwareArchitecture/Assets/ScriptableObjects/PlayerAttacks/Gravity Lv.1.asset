@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Gravity Push Lv.1
   cooldown: 7
-  abilityType: 2
+  attackType: 2
   requiredTokens: 1
   abilityDescription: Cast a burst of force around you that pushes enemies away from
     you.

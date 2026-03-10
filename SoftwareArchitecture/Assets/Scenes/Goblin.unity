@@ -275,7 +275,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f1463f835f2f93b47beb779b732abab1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a406a5be55203ab48ab7bb89c0686782, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &150601074
 Transform:
@@ -490,6 +490,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1023383375875396835, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101808399136250661, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365865415710709113, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760717283319673029, guid: 428e9b83f54c83147b553f844807c996, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3798888416131239174, guid: 428e9b83f54c83147b553f844807c996, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -552,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8782791559078747281, guid: 428e9b83f54c83147b553f844807c996, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8782791559078747281, guid: 428e9b83f54c83147b553f844807c996, type: 3}
       propertyPath: maxHealth

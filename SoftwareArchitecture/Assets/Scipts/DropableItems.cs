@@ -7,7 +7,7 @@ public class DropableItems : MonoBehaviour
 
     public void Drop()
     {
-        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
 
         int item;
         item = Random.Range(0, drops.Count);

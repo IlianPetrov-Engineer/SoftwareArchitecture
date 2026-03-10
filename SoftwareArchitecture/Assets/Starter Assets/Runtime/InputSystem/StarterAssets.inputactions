@@ -333,7 +333,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";KeyboardMouse",
                     "action": "FireballAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -344,7 +344,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";KeyboardMouse",
                     "action": "SecondAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -355,7 +355,7 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";KeyboardMouse",
                     "action": "ThirdAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
