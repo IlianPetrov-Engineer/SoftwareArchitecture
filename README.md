@@ -26,7 +26,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This project was created as a university assignment for my Software Architecture course. The focus of the assignment was on learing about and visualising our code structure using UML diagrams. In addition to it, the requirements called for a dungeon crawler type game containing multiple enemies and a boss. Each enemy has their own type of attack and AI behaviour, while the boss combines all three types and dynamically switches during battle. 
+This project was created as a university assignment for my Software Architecture course. The focus of the assignment was on learning about and visualising our code structure using UML diagrams. In addition to it, the requirements called for a dungeon crawler type game containing multiple enemies and a boss. Each enemy has their own type of attack and AI behaviour, while the boss combines all three types and dynamically switches during battle. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
