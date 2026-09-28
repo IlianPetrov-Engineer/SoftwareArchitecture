@@ -44,7 +44,7 @@ This project was created as a university assignment for my Software Architecture
 ### Enemy System
 **_EnemyController_** is a runtime component on every enemy. It uses **_EnemyData_** asset, which holds variables such as health, damage, speed and XP. Movement effects such as freezes and knockback are given to **_EnemyNavMeshController_**.
 
-For proper reaction to enemy event, I am using **observers**. **_EnemyObserver_** is the abstrack class that contains **_OnEnemyCreated_** (Initiated when an enemy is spawned; uses **_EnemyData_**), **_OnEnemyHit_** (What happens when an enemy is hit) and **__OnEnemyDied_** (What happens when an enemy dies). **_EnemyUIObserver_** is resposible for updating the UI elements linked to the enemy, like its health number and bar, while **_ItemXpObserver_** spawns the XP orbs, dropped by the enemies. **_EnemySpawner_** and **_EnemyPrefab_** handle populating the dungeon. 
+For proper reaction to enemy event, I am using **observers**. **_EnemyObserver_** is the abstract class that contains **_OnEnemyCreated_** (Initiated when an enemy is spawned; uses **_EnemyData_**), **_OnEnemyHit_** (What happens when an enemy is hit) and **__OnEnemyDied_** (What happens when an enemy dies). **_EnemyUIObserver_** is responsible for updating the UI elements linked to the enemy, like its health number and bar, while **_ItemXpObserver_** spawns the XP orbs, dropped by the enemies. **_EnemySpawner_** and **_EnemyPrefab_** handle populating the dungeon. 
 
 <img width="858" height="476" alt="Screenshot 2026-08-24 145057" src="https://github.com/user-attachments/assets/19b211ce-f336-440b-9d40-bdc69a6f57d8" />
 
